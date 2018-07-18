@@ -63,8 +63,9 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
         // - replace the contents of the view with that element
         holder.tv_pli_nombre_usuario.setText(mDataset.get(position).getNombre());
         holder.tv_pli_ultimo_mensaje.setText(mDataset.get(position).getMensaje());
-        Glide.with(mContext).load(mDataset.get(position).getFoto()).into(holder.iv_pli_foto_user);
-        //Glide.with(mContext).load("http://goo.gl/gEgYUd").into(holder.mImgtView);
+
+        //Glide.with(mContext).load(mDataset.get(position).getFoto()).into(holder.iv_pli_foto_user);
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
