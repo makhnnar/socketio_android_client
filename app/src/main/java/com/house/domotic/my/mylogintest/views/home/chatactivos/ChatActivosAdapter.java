@@ -1,4 +1,4 @@
-package com.house.domotic.my.mylogintest.views.home;
+package com.house.domotic.my.mylogintest.views.home.chatactivos;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.house.domotic.my.mylogintest.R;
-import com.house.domotic.my.mylogintest.views.home.model.ChatItemData;
+import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivosItemData;
+import com.house.domotic.my.mylogintest.views.home.listaamigos.model.ListaAmigosItemData;
 
 import java.util.ArrayList;
 
-public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.ViewHolder> {
+public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.ViewHolder> {
     private Context mContext;
-    private ArrayList<ChatItemData> mDataset;
+    private ArrayList<ChatActivosItemData> mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -39,15 +39,15 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListaAmigosAdapter(Context context, ArrayList<ChatItemData> myDataset) {
+    public ChatActivosAdapter(Context context, ArrayList<ChatActivosItemData> myDataset) {
         mDataset = myDataset;
         mContext = context;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public ListaAmigosAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
+    public ChatActivosAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                            int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.person_list_item, parent, false);

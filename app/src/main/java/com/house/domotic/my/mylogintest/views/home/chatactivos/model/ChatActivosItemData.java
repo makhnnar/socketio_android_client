@@ -1,12 +1,12 @@
-package com.house.domotic.my.mylogintest.views.home.model;
+package com.house.domotic.my.mylogintest.views.home.chatactivos.model;
 
-public class ChatItemData {
+public class ChatActivosItemData {
 
     private String nombre;
     private String mensaje;
     private String foto;
 
-    public ChatItemData(String nombre, String mensaje, String foto) {
+    public ChatActivosItemData(String nombre, String mensaje, String foto) {
         this.nombre = nombre;
         this.mensaje = mensaje;
         this.foto = foto;

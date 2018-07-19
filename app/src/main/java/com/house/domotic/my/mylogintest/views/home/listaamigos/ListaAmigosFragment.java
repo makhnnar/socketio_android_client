@@ -1,4 +1,4 @@
-package com.house.domotic.my.mylogintest.views.home;
+package com.house.domotic.my.mylogintest.views.home.listaamigos;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.house.domotic.my.mylogintest.R;
-import com.house.domotic.my.mylogintest.views.home.model.ChatItemData;
+import com.house.domotic.my.mylogintest.views.home.listaamigos.model.ListaAmigosItemData;
 
 import java.util.ArrayList;
 
@@ -21,9 +21,9 @@ public class ListaAmigosFragment extends Fragment {
 
     private LinearLayoutManager mLayoutManager;
 
-    private ListaAmigosAdapter listaAmigosAdapter;
+    private ChatActivosAdapter chatActivosAdapter;
 
-    private ArrayList<ChatItemData> mDataset = new ArrayList<>();
+    private ArrayList<ListaAmigosItemData> mDataset = new ArrayList<>();
 
     public static ListaAmigosFragment newInstance() {
         ListaAmigosFragment fragment = new ListaAmigosFragment();
@@ -50,12 +50,12 @@ public class ListaAmigosFragment extends Fragment {
         rv_fla_lista_amigo.setLayoutManager(mLayoutManager);
 
         for(int i=0;i<10;i++){
-            mDataset.add(new ChatItemData("nombre "+i,"mensaje "+i,"foto "+i));
+            mDataset.add(new ListaAmigosItemData("nombre "+i,"mensaje "+i,"foto "+i));
         }
 
-        listaAmigosAdapter = new ListaAmigosAdapter(getContext(), mDataset);
+        chatActivosAdapter = new ChatActivosAdapter(getContext(), mDataset);
 
-        rv_fla_lista_amigo.setAdapter(listaAmigosAdapter);
+        rv_fla_lista_amigo.setAdapter(chatActivosAdapter);
 
         return  view;
     }
