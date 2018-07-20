@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.ViewHolder> {
     private Context mContext;
     private ArrayList<ChatActivosItemData> mDataset;
+    private OnItemChatClickListener listener;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -32,9 +33,9 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
         ViewHolder(View v) {
             super(v);
             tv_pli_ultimo_mensaje = v.findViewById(R.id.tv_pli_ultimo_mensaje);
-            tv_pli_nombre_usuario =  v.findViewById(R.id.tv_pli_nombre_usuario );
-            iv_pli_cancel =  v.findViewById(R.id.iv_pli_cancel);
-            iv_pli_foto_user =  v.findViewById(R.id.iv_pli_foto_user);
+            tv_pli_nombre_usuario = v.findViewById(R.id.tv_pli_nombre_usuario);
+            iv_pli_cancel = v.findViewById(R.id.iv_pli_cancel);
+            iv_pli_foto_user = v.findViewById(R.id.iv_pli_foto_user);
         }
     }
 
@@ -58,19 +59,37 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.tv_pli_nombre_usuario.setText(mDataset.get(position).getNombre());
         holder.tv_pli_ultimo_mensaje.setText(mDataset.get(position).getMensaje());
-
+        holder.tv_pli_nombre_usuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(listener != null){
+                    listener.onGoChat(mDataset.get(position));
+                }
+            }
+        });
         //Glide.with(mContext).load(mDataset.get(position).getFoto()).into(holder.iv_pli_foto_user);
 
     }
+
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();
     }
+
+    public void setListener(OnItemChatClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemChatClickListener {
+        void onGoChat(ChatActivosItemData chatActivosItemData);
+        void onDeleteChat(ChatActivosItemData chatActivosItemData);
+    }
+
 }
