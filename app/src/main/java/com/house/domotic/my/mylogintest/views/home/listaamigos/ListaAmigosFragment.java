@@ -1,6 +1,7 @@
 package com.house.domotic.my.mylogintest.views.home.listaamigos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,18 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.house.domotic.my.mylogintest.R;
+import com.house.domotic.my.mylogintest.views.chat.ChatActivity;
 import com.house.domotic.my.mylogintest.views.home.listaamigos.model.ListaAmigosItemData;
 
 import java.util.ArrayList;
 
 
-public class ListaAmigosFragment extends Fragment {
+public class ListaAmigosFragment extends Fragment implements ListaAmigosAdapter.OnItemChatClickListener{
 
     private RecyclerView rv_fla_lista_amigo;
 
     private LinearLayoutManager mLayoutManager;
 
-    private ChatActivosAdapter chatActivosAdapter;
+    private ListaAmigosAdapter listaAmigosAdapter;
 
     private ArrayList<ListaAmigosItemData> mDataset = new ArrayList<>();
 
@@ -53,9 +55,11 @@ public class ListaAmigosFragment extends Fragment {
             mDataset.add(new ListaAmigosItemData("nombre "+i,"mensaje "+i,"foto "+i));
         }
 
-        chatActivosAdapter = new ChatActivosAdapter(getContext(), mDataset);
+        listaAmigosAdapter = new ListaAmigosAdapter(getContext(), mDataset);
+        listaAmigosAdapter.setListener(this);
 
-        rv_fla_lista_amigo.setAdapter(chatActivosAdapter);
+
+        rv_fla_lista_amigo.setAdapter(listaAmigosAdapter);
 
         return  view;
     }
@@ -74,5 +78,15 @@ public class ListaAmigosFragment extends Fragment {
 
     }
 
+
+    public void onGoChat(ListaAmigosItemData listaAmigosItemData) {
+        Intent intent = new Intent(this.getActivity(), ChatActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onDeleteFriend(ListaAmigosItemData listaAmigosItemData) {
+
+    }
 
 }

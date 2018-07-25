@@ -14,6 +14,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -27,7 +31,6 @@
                 android:id="@+id/iv_pli_foto_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="name"
                 android:textAlignment="center"
                 android:src="@drawable/ic_profile"/>
 
@@ -46,7 +49,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="pass"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textColor="@color/black"
@@ -57,7 +59,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="pass"
                 android:textAlignment="center"
                 />
 
@@ -76,7 +77,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="LOGIN"
                 android:src="@drawable/ic_cancel"/>
 
         </LinearLayout>

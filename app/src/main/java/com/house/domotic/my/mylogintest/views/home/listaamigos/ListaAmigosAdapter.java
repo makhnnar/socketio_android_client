@@ -1,4 +1,4 @@
-package com.house.domotic.my.mylogintest.views.home.chatactivos;
+package com.house.domotic.my.mylogintest.views.home.listaamigos;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,14 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.house.domotic.my.mylogintest.R;
-import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivosItemData;
+import com.house.domotic.my.mylogintest.views.home.chatactivos.ChatActivosAdapter;
 import com.house.domotic.my.mylogintest.views.home.listaamigos.model.ListaAmigosItemData;
 
 import java.util.ArrayList;
 
-public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.ViewHolder> {
+public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.ViewHolder> {
     private Context mContext;
-    private ArrayList<ChatActivosItemData> mDataset;
+    private ArrayList<ListaAmigosItemData> mDataset;
     private OnItemChatClickListener listener;
 
 
@@ -38,14 +38,14 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
     }
 
 
-    public ChatActivosAdapter(Context context, ArrayList<ChatActivosItemData> myDataset) {
+    public ListaAmigosAdapter(Context context, ArrayList<ListaAmigosItemData> myDataset) {
         mDataset = myDataset;
         mContext = context;
     }
 
 
     @Override
-    public ChatActivosAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+    public ListaAmigosAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                             int viewType) {
 
         View v = LayoutInflater.from(parent.getContext())
@@ -60,33 +60,38 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
         holder.tv_pli_nombre_usuario.setText(mDataset.get(position).getNombre());
-        holder.tv_pli_ultimo_mensaje.setText(mDataset.get(position).getMensaje());
+        holder.tv_pli_ultimo_mensaje.setText(mDataset.get(position).getEstado());
         holder.tv_pli_nombre_usuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(listener != null){
-                    listener.onGoChat(mDataset.get(position));
+                listener.onGoChat(mDataset.get(position));
+
                 }
-            }
-        });
-        //Glide.with(mContext).load(mDataset.get(position).getFoto()).into(holder.iv_pli_foto_user);
 
-    }
+                                                            //Glide.with(mContext).load(mDataset.get(position).getFoto()).into(holder.iv_pli_foto_user);
+
+                                                        }
 
 
-    // Return the size of your dataset (invoked by the layout manager)
+
+
+
+    });
+        }
+
+
     @Override
-    public int getItemCount() {
+    public int getItemCount () {
         return mDataset.size();
     }
 
-    public void setListener(OnItemChatClickListener listener) {
+    public void setListener (OnItemChatClickListener listener){
         this.listener = listener;
     }
 
     public interface OnItemChatClickListener {
-        void onGoChat(ChatActivosItemData chatActivosItemData);
-        void onDeleteChat(ChatActivosItemData chatActivosItemData);
+        void onGoChat(ListaAmigosItemData listaAmigosItemData);
+        void onDeleteFriend(ListaAmigosItemData listaAmigosItemData);
     }
-
-}
+    }
