@@ -87,6 +87,7 @@ public class ListaAmigosFragment extends Fragment implements ListaAmigosAdapter.
     @Override
     public void onDeleteFriend(ListaAmigosItemData listaAmigosItemData) {
 
+
     }
 
 }

@@ -27,7 +27,7 @@
 
 
             <ImageView
-                android:id="@+id/iv_ac_chat_foto"
+                android:id="@+id/iv_ac_arrow_back"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="name"
@@ -88,7 +88,9 @@
         android:layout_weight="8"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
-        android:layout_below="@+id/ll_ac_chat_header">
+        android:layout_below="@+id/ll_ac_chat_header"
+        android:layout_above="@+id/ll_ac_msg_box">
+
     </android.support.v7.widget.RecyclerView>
 
 

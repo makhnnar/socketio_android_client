@@ -1,9 +1,11 @@
 package com.house.domotic.my.mylogintest.views.home.chatactivos;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,13 +14,13 @@ import android.view.ViewGroup;
 
 import com.house.domotic.my.mylogintest.R;
 import com.house.domotic.my.mylogintest.views.chat.ChatActivity;
-import com.house.domotic.my.mylogintest.views.home.HomeActivity;
+
 import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivosItemData;
 
 
 import java.util.ArrayList;
 
-public class ChatActivosFragment extends Fragment implements ChatActivosAdapter.OnItemChatClickListener{
+public class ChatActivosFragment extends Fragment implements ChatActivosAdapter.OnItemChatClickListener {
 
     private RecyclerView rv_fca_chat_activos;
 
@@ -36,7 +38,6 @@ public class ChatActivosFragment extends Fragment implements ChatActivosAdapter.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -52,8 +53,8 @@ public class ChatActivosFragment extends Fragment implements ChatActivosAdapter.
 
         rv_fca_chat_activos.setLayoutManager(mLayoutManager);
 
-        for(int i=0;i<10;i++){
-            mDataset.add(new ChatActivosItemData("nombre "+i,"mensaje "+i,"foto "+i));
+        for (int i = 0; i < 10; i++) {
+            mDataset.add(new ChatActivosItemData("nombre " + i, "mensaje " + i, "foto " + i));
         }
 
         chatActivosAdapter = new ChatActivosAdapter(getContext(), mDataset);
@@ -61,23 +62,19 @@ public class ChatActivosFragment extends Fragment implements ChatActivosAdapter.
 
         rv_fca_chat_activos.setAdapter(chatActivosAdapter);
 
-        return  view;
+        return view;
     }
-
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-
     }
-
 
     @Override
     public void onGoChat(ChatActivosItemData chatActivosItemData) {
@@ -87,6 +84,11 @@ public class ChatActivosFragment extends Fragment implements ChatActivosAdapter.
 
     @Override
     public void onDeleteChat(ChatActivosItemData chatActivosItemData) {
+        FragmentTransaction ft = this.getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
 
+        ft.addToBackStack(null);
+        DeleteChatDialog dialogFragment = new DeleteChatDialog();
+        dialogFragment.show(ft, "dialog");
     }
 }

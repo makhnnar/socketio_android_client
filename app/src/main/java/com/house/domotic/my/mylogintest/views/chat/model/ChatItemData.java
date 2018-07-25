@@ -1,16 +1,16 @@
 package com.house.domotic.my.mylogintest.views.chat.model;
 
 public class ChatItemData {
-    private String mensaje;
     private String nombre;
+    private String mensaje;
     private String foto;
     private String hora;
 
 
 
-    public ChatItemData( String mensaje, String nombre, String foto, String hora) {
-        this.mensaje = mensaje;
+    public ChatItemData(  String nombre, String mensaje, String foto, String hora) {
         this.nombre = nombre;
+        this.mensaje = mensaje;
         this.foto = foto;
         this.hora = hora;
     }

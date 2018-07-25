@@ -69,6 +69,14 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
                 }
             }
         });
+        holder.iv_pli_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listener != null){
+                    listener.onDeleteChat(mDataset.get(position));
+                }
+            }
+        });
         //Glide.with(mContext).load(mDataset.get(position).getFoto()).into(holder.iv_pli_foto_user);
 
     }

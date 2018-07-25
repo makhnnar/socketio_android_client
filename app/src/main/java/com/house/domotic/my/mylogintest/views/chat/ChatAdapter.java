@@ -73,5 +73,18 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     public int getItemCount() {
         return mDataset.size();
     }
+
+    public void showLastMessage (ChatItemData chatItemData){
+        mDataset.add(chatItemData);
+        notifyDataSetChanged();
+    }
+
+    public void update (ArrayList<ChatItemData> mDataset){
+        if (mDataset != null && mDataset.size() > 0){
+            mDataset.clear();
+            this.mDataset  = mDataset;
+            notifyDataSetChanged();
+        }
+    }
 }
 

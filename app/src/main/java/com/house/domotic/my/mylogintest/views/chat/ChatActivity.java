@@ -13,7 +13,7 @@ import com.house.domotic.my.mylogintest.views.chat.model.ChatItemData;
 
 import java.util.ArrayList;
 
-public class ChatActivity extends AppCompatActivity implements View.OnClickListener{
+public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private RecyclerView rv_ac_msg_List;
@@ -22,6 +22,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private ChatAdapter chatAdapter;
     private ImageView iv_ac_send_button;
     private EditText et_ac_send_text;
+    private ImageView iv_ac_arrow_back;
 
 
     @Override
@@ -32,7 +33,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         rv_ac_msg_List = findViewById(R.id.rv_ac_msg_List);
         iv_ac_send_button = findViewById(R.id.iv_ac_send_button);
         iv_ac_send_button.setOnClickListener(this);
-        et_ac_send_text =findViewById(R.id.et_ac_send_text);
+        et_ac_send_text = findViewById(R.id.et_ac_send_text);
+        iv_ac_arrow_back = findViewById(R.id.iv_ac_arrow_back);
+        iv_ac_arrow_back.setOnClickListener(this);
 
 
         // Instanciamos un linear layout manager para setearlo en el RecyclerView
@@ -40,9 +43,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
         rv_ac_msg_List.setLayoutManager(mLayoutManager);
 
-        for(int i=0;i<10;i++){
+        /*for(int i=0;i<10;i++){
             mDataset.add(new ChatItemData("nombre "+i,"mensaje "+i,"foto "+i, "hora"+i));
-        }
+        }*/
 
         chatAdapter = new ChatAdapter(this.getBaseContext(), mDataset);
 
@@ -53,10 +56,21 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if(view.equals(iv_ac_send_button)){
-            ChatItemData chatItemData = new ChatItemData(et_ac_send_text.getText());
+        if (view.equals(iv_ac_send_button)) {
+            ChatItemData chatItemData = new ChatItemData(
+                    "nombre",
+                    et_ac_send_text.getText().toString(),
+                    "foto",
+                    "hora"
+            );
+            chatAdapter.showLastMessage(chatItemData);
+            rv_ac_msg_List.smoothScrollToPosition(chatAdapter.getItemCount() - 1);
+            et_ac_send_text.setText("");
 
-            
+
+        }
+        if (view.equals(iv_ac_arrow_back)) {
+            onBackPressed();
         }
 
     }
