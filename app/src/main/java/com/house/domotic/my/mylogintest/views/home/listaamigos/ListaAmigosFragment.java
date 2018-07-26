@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 
 import com.house.domotic.my.mylogintest.R;
 import com.house.domotic.my.mylogintest.views.chat.ChatActivity;
+import com.house.domotic.my.mylogintest.views.home.chatactivos.DeleteChatDialog;
+import com.house.domotic.my.mylogintest.views.home.listaamigos.model.DeleteFriendDialog;
 import com.house.domotic.my.mylogintest.views.home.listaamigos.model.ListaAmigosItemData;
 
 import java.util.ArrayList;
@@ -86,8 +89,12 @@ public class ListaAmigosFragment extends Fragment implements ListaAmigosAdapter.
 
     @Override
     public void onDeleteFriend(ListaAmigosItemData listaAmigosItemData) {
+        FragmentTransaction ft = this.getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
 
-
+        ft.addToBackStack(null);
+        DeleteFriendDialog dialogFragment = new DeleteFriendDialog();
+        dialogFragment.show(ft, "dialog");
     }
 
 }

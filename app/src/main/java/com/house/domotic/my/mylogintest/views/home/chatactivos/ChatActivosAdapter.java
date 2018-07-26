@@ -14,14 +14,13 @@ import com.house.domotic.my.mylogintest.views.home.listaamigos.model.ListaAmigos
 
 import java.util.ArrayList;
 
-public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.ViewHolder> {
+public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.ViewHolder>{
+
     private Context mContext;
     private ArrayList<ChatActivosItemData> mDataset;
     private OnItemChatClickListener listener;
 
-
     static class ViewHolder extends RecyclerView.ViewHolder {
-
 
         TextView tv_pli_ultimo_mensaje;
         TextView tv_pli_nombre_usuario;
@@ -47,10 +46,8 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
     @Override
     public ChatActivosAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                             int viewType) {
-
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.person_list_item, parent, false);
-
 
         return new ViewHolder(v);
     }
@@ -73,12 +70,19 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
             @Override
             public void onClick(View view) {
                 if (listener != null){
-                    listener.onDeleteChat(mDataset.get(position));
+                    listener.onDeleteChat(position);
                 }
             }
         });
         //Glide.with(mContext).load(mDataset.get(position).getFoto()).into(holder.iv_pli_foto_user);
 
+    }
+
+    public void deleteChatActivo(int position){
+        if(position > -1) {
+            mDataset.remove(position);
+            notifyDataSetChanged();
+        }
     }
 
 
@@ -94,7 +98,7 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
 
     public interface OnItemChatClickListener {
         void onGoChat(ChatActivosItemData chatActivosItemData);
-        void onDeleteChat(ChatActivosItemData chatActivosItemData);
+        void onDeleteChat(int pos);
     }
 
 }

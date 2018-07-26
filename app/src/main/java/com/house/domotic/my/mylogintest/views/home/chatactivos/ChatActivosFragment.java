@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,9 @@ import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivos
 
 import java.util.ArrayList;
 
-public class ChatActivosFragment extends Fragment implements ChatActivosAdapter.OnItemChatClickListener {
+public class ChatActivosFragment extends Fragment implements
+        ChatActivosAdapter.OnItemChatClickListener,
+        DeleteChatDialog.OnDialogClickListener {
 
     private RecyclerView rv_fca_chat_activos;
 
@@ -29,6 +32,8 @@ public class ChatActivosFragment extends Fragment implements ChatActivosAdapter.
     private ChatActivosAdapter chatActivosAdapter;
 
     private ArrayList<ChatActivosItemData> mDataset = new ArrayList<>();
+
+    private int pos = -1;
 
     public static ChatActivosFragment newInstance() {
         ChatActivosFragment fragment = new ChatActivosFragment();
@@ -83,12 +88,20 @@ public class ChatActivosFragment extends Fragment implements ChatActivosAdapter.
     }
 
     @Override
-    public void onDeleteChat(ChatActivosItemData chatActivosItemData) {
+    public void onDeleteChat(int pos) {
+        this.pos = pos;
         FragmentTransaction ft = this.getFragmentManager().beginTransaction();
         Fragment prev = getFragmentManager().findFragmentByTag("dialog");
-
         ft.addToBackStack(null);
         DeleteChatDialog dialogFragment = new DeleteChatDialog();
+        dialogFragment.setListener(this);
         dialogFragment.show(ft, "dialog");
+        Log.i("pos", "--- "+pos);
+    }
+
+    @Override
+    public void onAcept() {
+        chatActivosAdapter.deleteChatActivo(pos);
+        pos = -1;
     }
 }

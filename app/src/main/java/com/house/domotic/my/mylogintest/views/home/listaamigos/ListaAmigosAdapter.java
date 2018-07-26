@@ -81,6 +81,7 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
             }
         });
 
+
     }
 
 
