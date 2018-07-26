@@ -4,7 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.house.domotic.my.mylogintest.R;
-import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivosItemData;
+
 
 public class DeleteChatDialog extends DialogFragment implements View.OnClickListener{
 

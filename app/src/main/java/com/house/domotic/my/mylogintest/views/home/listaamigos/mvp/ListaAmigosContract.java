@@ -1,6 +1,6 @@
-package com.house.domotic.my.mylogintest.mvp;
+package com.house.domotic.my.mylogintest.views.home.listaamigos.mvp;
 
-public class LoginContract {
+public class ListaAmigosContract {
 
     public interface LoginResponse{
 
@@ -11,7 +11,7 @@ public class LoginContract {
 
     public interface Presenter{
 
-        void makeLogin(String user,String pass);
+        void makeLogin(String user, String pass);
 
     }
 

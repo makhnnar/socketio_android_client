@@ -20,7 +20,9 @@ import com.house.domotic.my.mylogintest.views.home.listaamigos.model.ListaAmigos
 import java.util.ArrayList;
 
 
-public class ListaAmigosFragment extends Fragment implements ListaAmigosAdapter.OnItemChatClickListener{
+public class ListaAmigosFragment extends Fragment implements
+        ListaAmigosAdapter.OnItemChatClickListener,
+        DeleteFriendDialog.OnFriendDialogClickListener {
 
     private RecyclerView rv_fla_lista_amigo;
 
@@ -30,6 +32,8 @@ public class ListaAmigosFragment extends Fragment implements ListaAmigosAdapter.
 
     private ArrayList<ListaAmigosItemData> mDataset = new ArrayList<>();
 
+    private int pos = -1;
+
     public static ListaAmigosFragment newInstance() {
         ListaAmigosFragment fragment = new ListaAmigosFragment();
         return fragment;
@@ -38,7 +42,6 @@ public class ListaAmigosFragment extends Fragment implements ListaAmigosAdapter.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -54,8 +57,8 @@ public class ListaAmigosFragment extends Fragment implements ListaAmigosAdapter.
 
         rv_fla_lista_amigo.setLayoutManager(mLayoutManager);
 
-        for(int i=0;i<10;i++){
-            mDataset.add(new ListaAmigosItemData("nombre "+i,"mensaje "+i,"foto "+i));
+        for (int i = 0; i < 10; i++) {
+            mDataset.add(new ListaAmigosItemData("nombre " + i, "mensaje " + i, "foto " + i));
         }
 
         listaAmigosAdapter = new ListaAmigosAdapter(getContext(), mDataset);
@@ -64,9 +67,8 @@ public class ListaAmigosFragment extends Fragment implements ListaAmigosAdapter.
 
         rv_fla_lista_amigo.setAdapter(listaAmigosAdapter);
 
-        return  view;
+        return view;
     }
-
 
 
     @Override
@@ -88,13 +90,19 @@ public class ListaAmigosFragment extends Fragment implements ListaAmigosAdapter.
     }
 
     @Override
-    public void onDeleteFriend(ListaAmigosItemData listaAmigosItemData) {
+    public void onDeleteFriend(int pos) {
+        this.pos = pos;
         FragmentTransaction ft = this.getFragmentManager().beginTransaction();
         Fragment prev = getFragmentManager().findFragmentByTag("dialog");
-
         ft.addToBackStack(null);
         DeleteFriendDialog dialogFragment = new DeleteFriendDialog();
+        dialogFragment.setListener(this);
         dialogFragment.show(ft, "dialog");
     }
 
+    @Override
+    public void onFriendAcept() {
+        listaAmigosAdapter.deleteFriend(pos);
+        pos = -1;
+    }
 }

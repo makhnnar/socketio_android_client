@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.house.domotic.my.mylogintest.R;
-import com.house.domotic.my.mylogintest.mvp.LoginContract;
-import com.house.domotic.my.mylogintest.mvp.LoginPresenter;
+import com.house.domotic.my.mylogintest.views.login.mvp.LoginContract;
+import com.house.domotic.my.mylogintest.views.login.mvp.LoginPresenter;
 import com.house.domotic.my.mylogintest.views.home.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View,View.OnClickListener {

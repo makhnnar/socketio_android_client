@@ -76,12 +76,18 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
             @Override
             public void onClick(View view) {
                 if (listener != null){
-                    listener.onDeleteFriend(mDataset.get(position));
+                    listener.onDeleteFriend(position);
                 }
             }
         });
 
 
+    }
+    public void deleteFriend(int position){
+        if(position > -1) {
+            mDataset.remove(position);
+            notifyDataSetChanged();
+        }
     }
 
 
@@ -96,6 +102,6 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
 
     public interface OnItemChatClickListener {
         void onGoChat(ListaAmigosItemData listaAmigosItemData);
-        void onDeleteFriend(ListaAmigosItemData listaAmigosItemData);
+        void onDeleteFriend(int pos);
     }
     }

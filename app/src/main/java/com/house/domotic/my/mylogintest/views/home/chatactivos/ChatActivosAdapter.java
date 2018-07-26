@@ -100,5 +100,15 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
         void onGoChat(ChatActivosItemData chatActivosItemData);
         void onDeleteChat(int pos);
     }
+    public void update(ArrayList<ChatActivosItemData> mDataset){
+        if (mDataset != null){
+            this.mDataset.clear();
+            this.mDataset  = mDataset;
+            notifyDataSetChanged();
+
+
+        }
+
+    }
 
 }

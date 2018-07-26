@@ -17,13 +17,16 @@ import com.house.domotic.my.mylogintest.R;
 import com.house.domotic.my.mylogintest.views.chat.ChatActivity;
 
 import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivosItemData;
+import com.house.domotic.my.mylogintest.views.home.chatactivos.mvp.ChatActivosContract;
+import com.house.domotic.my.mylogintest.views.home.chatactivos.mvp.ChatActivosPresenter;
 
 
 import java.util.ArrayList;
 
 public class ChatActivosFragment extends Fragment implements
         ChatActivosAdapter.OnItemChatClickListener,
-        DeleteChatDialog.OnDialogClickListener {
+        DeleteChatDialog.OnDialogClickListener,
+        ChatActivosContract.View{
 
     private RecyclerView rv_fca_chat_activos;
 
@@ -34,6 +37,8 @@ public class ChatActivosFragment extends Fragment implements
     private ArrayList<ChatActivosItemData> mDataset = new ArrayList<>();
 
     private int pos = -1;
+
+    private ChatActivosPresenter presenter;
 
     public static ChatActivosFragment newInstance() {
         ChatActivosFragment fragment = new ChatActivosFragment();
@@ -51,6 +56,8 @@ public class ChatActivosFragment extends Fragment implements
 
         View view = inflater.inflate(R.layout.fragment_chat_activos, container, false);
 
+        presenter = new ChatActivosPresenter(this);
+
         rv_fca_chat_activos = view.findViewById(R.id.rv_fca_chat_activos);
 
         // Instanciamos un linear layout manager para setearlo en el RecyclerView
@@ -58,14 +65,12 @@ public class ChatActivosFragment extends Fragment implements
 
         rv_fca_chat_activos.setLayoutManager(mLayoutManager);
 
-        for (int i = 0; i < 10; i++) {
-            mDataset.add(new ChatActivosItemData("nombre " + i, "mensaje " + i, "foto " + i));
-        }
 
         chatActivosAdapter = new ChatActivosAdapter(getContext(), mDataset);
         chatActivosAdapter.setListener(this);
 
         rv_fca_chat_activos.setAdapter(chatActivosAdapter);
+        presenter.getChatActivos();
 
         return view;
     }
@@ -103,5 +108,18 @@ public class ChatActivosFragment extends Fragment implements
     public void onAcept() {
         chatActivosAdapter.deleteChatActivo(pos);
         pos = -1;
+    }
+
+    @Override
+    public void getChatActivosSuccess(ArrayList<ChatActivosItemData> mDataset) {
+        if (chatActivosAdapter != null) {
+            chatActivosAdapter.update(mDataset);
+        }
+
+    }
+
+    @Override
+    public void getChatActivosFailed() {
+
     }
 }
