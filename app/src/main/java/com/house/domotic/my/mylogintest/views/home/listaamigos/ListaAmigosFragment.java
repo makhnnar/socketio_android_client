@@ -16,13 +16,17 @@ import com.house.domotic.my.mylogintest.views.chat.ChatActivity;
 import com.house.domotic.my.mylogintest.views.home.chatactivos.DeleteChatDialog;
 import com.house.domotic.my.mylogintest.views.home.listaamigos.model.DeleteFriendDialog;
 import com.house.domotic.my.mylogintest.views.home.listaamigos.model.ListaAmigosItemData;
+import com.house.domotic.my.mylogintest.views.home.listaamigos.mvp.ListaAmigosContract;
+import com.house.domotic.my.mylogintest.views.home.listaamigos.mvp.ListaAmigosPresenter;
 
 import java.util.ArrayList;
 
 
 public class ListaAmigosFragment extends Fragment implements
         ListaAmigosAdapter.OnItemChatClickListener,
-        DeleteFriendDialog.OnFriendDialogClickListener {
+        DeleteFriendDialog.OnFriendDialogClickListener,
+        ListaAmigosContract.View
+        {
 
     private RecyclerView rv_fla_lista_amigo;
 
@@ -33,6 +37,8 @@ public class ListaAmigosFragment extends Fragment implements
     private ArrayList<ListaAmigosItemData> mDataset = new ArrayList<>();
 
     private int pos = -1;
+
+    private ListaAmigosPresenter presenter;
 
     public static ListaAmigosFragment newInstance() {
         ListaAmigosFragment fragment = new ListaAmigosFragment();
@@ -49,6 +55,8 @@ public class ListaAmigosFragment extends Fragment implements
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_lista_amigos, container, false);
+
+        presenter = new ListaAmigosPresenter(this);
 
         rv_fla_lista_amigo = view.findViewById(R.id.rv_fla_lista_amigo);
 
@@ -105,4 +113,16 @@ public class ListaAmigosFragment extends Fragment implements
         listaAmigosAdapter.deleteFriend(pos);
         pos = -1;
     }
-}
+
+            @Override
+            public void getListaAmigosSuccess(ArrayList<ListaAmigosItemData> mDataset) {
+                if (listaAmigosAdapter != null) {
+                    listaAmigosAdapter.update(mDataset);
+                }
+            }
+
+            @Override
+            public void getListaAmigosFailed() {
+
+            }
+        }

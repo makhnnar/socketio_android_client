@@ -1,28 +1,70 @@
 package com.house.domotic.my.mylogintest.views.chat.mvp;
 
-public class ChatPresenter implements ChatContract.Presenter,ChatContract.LoginResponse{
+import com.house.domotic.my.mylogintest.views.chat.model.ChatItemData;
+
+import java.util.ArrayList;
+
+public class ChatPresenter implements
+        ChatContract.Presenter,
+        ChatContract.SendMessageResponse,
+        ChatContract.ReciveMessageResponse,
+        ChatContract.ReciveAllChatMessageResponse {
 
     private ChatContract.View view;
 
     private ChatInteractor interactor;
 
-    public ChatPresenter(ChatContract.View view){
+    private ArrayList<ChatItemData> mDataset = new ArrayList<>();
+
+    public ChatPresenter(ChatContract.View view) {
         this.view = view;
         interactor = new ChatInteractor();
     }
 
+
     @Override
-    public void makeLogin(String user, String pass) {
-        interactor.requestLogin(this,user,pass);
+    public void onSendMessageSuccess() {
+
     }
 
     @Override
-    public void onLoginSuccess() {
-        view.onLoginSuccess();
+    public void onSendMessageFailed() {
+
     }
 
     @Override
-    public void onLoginFailed() {
-        view.onLoginFailed();
+    public void onReciveMessageSuccess() {
+        interactor.requestMessage(this);
+
+    }
+
+    @Override
+    public void onReciveMessageFailed() {
+
+    }
+
+    @Override
+    public void onReciveAllChatMessageSuccess(ArrayList<ChatItemData> mDataset) {
+        if (mDataset != null){
+            this.mDataset.clear();
+            this.mDataset  = mDataset;
+            view.onReciveAllMessagesSuccess(mDataset);
+
+    }
+
+    @Override
+    public void onReciveAllChatMessageFailed() {
+
+    }
+
+    @Override
+    public void onSendMessage() {
+
+
+    }
+
+    @Override
+    public void onDeleteMessage() {
+
     }
 }

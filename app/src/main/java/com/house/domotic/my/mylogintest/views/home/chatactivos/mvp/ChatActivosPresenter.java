@@ -34,7 +34,7 @@ public class ChatActivosPresenter implements
     }
 
     @Override
-    public void getChatActivosSuccess(ArrayList<ChatActivosItemData> mDataset) {
+    public void ChatActivosSuccess(ArrayList<ChatActivosItemData> mDataset) {
         if (mDataset != null){
             this.mDataset.clear();
             this.mDataset  = mDataset;
@@ -44,7 +44,7 @@ public class ChatActivosPresenter implements
     }
 
     @Override
-    public void getChatActivosFailed() {
+    public void ChatActivosFailed() {
 
     }
 

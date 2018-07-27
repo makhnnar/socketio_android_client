@@ -16,7 +16,7 @@ public class ChatActivosInteractor {
         for (int i = 0; i < 10; i++) {
             mDataset.add(new ChatActivosItemData("nombre " + i, "mensaje " + i, "foto " + i));
         }
-        response.getChatActivosSuccess(mDataset);
+        response.ChatActivosSuccess(mDataset);
     }
 
 

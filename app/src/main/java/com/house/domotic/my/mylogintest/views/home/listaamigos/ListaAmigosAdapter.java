@@ -65,8 +65,8 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
         holder.tv_pli_nombre_usuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(listener != null){
-                listener.onGoChat(mDataset.get(position));
+                if (listener != null) {
+                    listener.onGoChat(mDataset.get(position));
 
                 }
             }
@@ -75,7 +75,7 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
         holder.iv_pli_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (listener != null){
+                if (listener != null) {
                     listener.onDeleteFriend(position);
                 }
             }
@@ -83,8 +83,9 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
 
 
     }
-    public void deleteFriend(int position){
-        if(position > -1) {
+
+    public void deleteFriend(int position) {
+        if (position > -1) {
             mDataset.remove(position);
             notifyDataSetChanged();
         }
@@ -92,16 +93,25 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
 
 
     @Override
-    public int getItemCount () {
+    public int getItemCount() {
         return mDataset.size();
     }
 
-    public void setListener (OnItemChatClickListener listener){
+    public void setListener(OnItemChatClickListener listener) {
         this.listener = listener;
     }
 
     public interface OnItemChatClickListener {
         void onGoChat(ListaAmigosItemData listaAmigosItemData);
+
         void onDeleteFriend(int pos);
     }
+
+    public void update(ArrayList<ListaAmigosItemData> mDataset) {
+        if (mDataset != null) {
+            this.mDataset.clear();
+            this.mDataset = mDataset;
+            notifyDataSetChanged();
+        }
     }
+}

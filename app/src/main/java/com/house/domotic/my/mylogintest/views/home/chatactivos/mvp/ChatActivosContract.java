@@ -10,8 +10,8 @@ public class ChatActivosContract {
 
     public interface ChatResponse{
 
-        void getChatActivosSuccess(ArrayList<ChatActivosItemData> mDataset);
-        void getChatActivosFailed();
+        void ChatActivosSuccess(ArrayList<ChatActivosItemData> mDataset);
+        void ChatActivosFailed();
 
     }
 
