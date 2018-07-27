@@ -10,10 +10,13 @@ import android.widget.ImageView;
 
 import com.house.domotic.my.mylogintest.R;
 import com.house.domotic.my.mylogintest.views.chat.model.ChatItemData;
+import com.house.domotic.my.mylogintest.views.chat.mvp.ChatContract;
+import com.house.domotic.my.mylogintest.views.chat.mvp.ChatPresenter;
 
 import java.util.ArrayList;
 
-public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
+public class ChatActivity extends AppCompatActivity implements
+        View.OnClickListener, ChatContract.View {
 
 
     private RecyclerView rv_ac_msg_List;
@@ -23,6 +26,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView iv_ac_send_button;
     private EditText et_ac_send_text;
     private ImageView iv_ac_arrow_back;
+    private ChatPresenter presenter;
 
 
     @Override
@@ -41,6 +45,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         // Instanciamos un linear layout manager para setearlo en el RecyclerView
         mLayoutManager = new LinearLayoutManager(this.getBaseContext());
 
+        presenter = new ChatPresenter(this);
+
         rv_ac_msg_List.setLayoutManager(mLayoutManager);
 
         /*for(int i=0;i<10;i++){
@@ -57,14 +63,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.equals(iv_ac_send_button)) {
-            ChatItemData chatItemData = new ChatItemData(
-                    "nombre",
-                    et_ac_send_text.getText().toString(),
-                    "foto",
-                    "hora"
-            );
-            chatAdapter.showLastMessage(chatItemData);
-            rv_ac_msg_List.smoothScrollToPosition(chatAdapter.getItemCount() - 1);
+
+            /*chatAdapter.showLastMessage(chatItemData);
+            rv_ac_msg_List.smoothScrollToPosition(chatAdapter.getItemCount() - 1);*/
+
+
+            presenter.onSendMessage(et_ac_send_text.getText().toString());
             et_ac_send_text.setText("");
 
 
@@ -72,6 +76,29 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         if (view.equals(iv_ac_arrow_back)) {
             onBackPressed();
         }
+
+    }
+
+    @Override
+    public void onReciveAllMessagesSuccess(ArrayList<ChatItemData> mDataset) {
+        if (chatAdapter != null) {
+            chatAdapter.update(mDataset);
+        }
+
+    }
+
+    @Override
+    public void onReciveMessageSuccess() {
+
+    }
+
+    @Override
+    public void onReciveAllMessagesFailed() {
+
+    }
+
+    @Override
+    public void onReciveMessageFailed() {
 
     }
 }

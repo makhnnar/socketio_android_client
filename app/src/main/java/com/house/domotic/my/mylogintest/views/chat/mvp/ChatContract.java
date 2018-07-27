@@ -8,7 +8,7 @@ public class ChatContract {
 
     public interface SendMessageResponse{
 
-        void onSendMessageSuccess();
+        void onSendMessageSuccess(ArrayList<ChatItemData> mDataset);
         void onSendMessageFailed();
 
     }
@@ -21,14 +21,14 @@ public class ChatContract {
 
     public interface ReciveAllChatMessageResponse {
 
-        void onReciveAllChatMessageSuccess();
+        void onReciveAllChatMessageSuccess(ArrayList<ChatItemData> mDataset);
         void onReciveAllChatMessageFailed();
 
     }
 
     public interface Presenter{
 
-        void onSendMessage();
+        void onSendMessage(String msj);
         void onDeleteMessage();
 
     }
