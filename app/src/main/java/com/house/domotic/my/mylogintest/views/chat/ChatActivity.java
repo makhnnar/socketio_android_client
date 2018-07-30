@@ -1,5 +1,7 @@
 package com.house.domotic.my.mylogintest.views.chat;
 
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.house.domotic.my.mylogintest.R;
 import com.house.domotic.my.mylogintest.views.chat.model.ChatItemData;
@@ -16,7 +19,7 @@ import com.house.domotic.my.mylogintest.views.chat.mvp.ChatPresenter;
 import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity implements
-        View.OnClickListener, ChatContract.View {
+        View.OnClickListener, ChatContract.View, SwipeRefreshLayout.OnRefreshListener {
 
 
     private RecyclerView rv_ac_msg_List;
@@ -27,6 +30,9 @@ public class ChatActivity extends AppCompatActivity implements
     private EditText et_ac_send_text;
     private ImageView iv_ac_arrow_back;
     private ChatPresenter presenter;
+    private SwipeRefreshLayout srl_ac_chat_refresh_layout;
+    //private ProgressBar pb_ac_progress_bar;
+
 
 
     @Override
@@ -40,6 +46,10 @@ public class ChatActivity extends AppCompatActivity implements
         et_ac_send_text = findViewById(R.id.et_ac_send_text);
         iv_ac_arrow_back = findViewById(R.id.iv_ac_arrow_back);
         iv_ac_arrow_back.setOnClickListener(this);
+        srl_ac_chat_refresh_layout = findViewById(R.id.srl_ac_chat_refresh_layout);
+        srl_ac_chat_refresh_layout.setOnRefreshListener(this);
+        //pb_ac_progress_bar = findViewById(R.id.pb_ac_progress_bar);
+
 
 
         // Instanciamos un linear layout manager para setearlo en el RecyclerView
@@ -82,6 +92,9 @@ public class ChatActivity extends AppCompatActivity implements
         if (chatAdapter != null) {
             chatAdapter.update(mDataset);
             rv_ac_msg_List.smoothScrollToPosition(chatAdapter.getItemCount() - 1);
+            //pb_ac_progress_bar.setVisibility(View.GONE);
+            srl_ac_chat_refresh_layout.setRefreshing(false);
+
         }
     }
 
@@ -97,6 +110,14 @@ public class ChatActivity extends AppCompatActivity implements
 
     @Override
     public void onReciveMessageFailed() {
+
+    }
+
+    @Override
+    public void onRefresh() {
+        presenter.getAllMessage();
+        //pb_ac_progress_bar.setVisibility(View.VISIBLE);
+
 
     }
 }
