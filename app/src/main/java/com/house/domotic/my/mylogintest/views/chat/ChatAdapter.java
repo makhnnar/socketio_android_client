@@ -79,10 +79,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void update (ArrayList<ChatItemData> mDataset){
-        if (mDataset != null && mDataset.size() > 0){
-            mDataset.clear();
-            this.mDataset  = mDataset;
+    public void update (ArrayList<ChatItemData> messageList){
+        if (messageList != null  && messageList.size() > 0){
+            //this.mDataset.clear();
+            this.mDataset  = messageList;
             notifyDataSetChanged();
         }
     }

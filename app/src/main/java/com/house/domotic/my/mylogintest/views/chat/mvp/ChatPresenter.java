@@ -1,5 +1,7 @@
 package com.house.domotic.my.mylogintest.views.chat.mvp;
 
+import android.util.Log;
+
 import com.house.domotic.my.mylogintest.views.chat.model.ChatItemData;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class ChatPresenter implements
 
     @Override
     public void onSendMessageSuccess(ArrayList<ChatItemData> mDataset) {
-        interactor.requestMessage(this);
+
 
     }
 
@@ -47,10 +49,10 @@ public class ChatPresenter implements
     }
 
     @Override
-    public void onReciveAllChatMessageSuccess(ArrayList<ChatItemData> mDataset) {
-        if (mDataset != null) {
-            this.mDataset.clear();
-            this.mDataset = mDataset;
+    public void onReciveAllChatMessageSuccess(ArrayList<ChatItemData> listaMensaje) {
+        if (listaMensaje != null) {
+            //this.mDataset.clear();
+            this.mDataset = listaMensaje;
             view.onReciveAllMessagesSuccess(mDataset);
 
         }
@@ -62,8 +64,7 @@ public class ChatPresenter implements
     }
 
     @Override
-    public void onSendMessage(String msj) {
-
+    public void sendMessage(String msj) {
 
         ChatItemData chatItemData = new ChatItemData(
                 "nombre",
@@ -73,14 +74,21 @@ public class ChatPresenter implements
 
         );
         mDataset.add(chatItemData);
+        Log.i("verificar", "---"+ " " + mDataset.size());
         interactor.sendMessage(this, chatItemData, mDataset.size()-1);
         view.onReciveAllMessagesSuccess(mDataset);
+
 
     }
 
     @Override
-    public void onDeleteMessage() {
+    public void deleteMessage() {
 
+    }
+
+    @Override
+    public void getAllMessage() {
+        interactor.requestMessage(this);
     }
 }
 /*

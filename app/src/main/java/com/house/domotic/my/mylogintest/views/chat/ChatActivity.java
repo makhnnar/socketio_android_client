@@ -57,6 +57,7 @@ public class ChatActivity extends AppCompatActivity implements
 
         rv_ac_msg_List.setAdapter(chatAdapter);
 
+        presenter.getAllMessage();
 
     }
 
@@ -64,13 +65,10 @@ public class ChatActivity extends AppCompatActivity implements
     public void onClick(View view) {
         if (view.equals(iv_ac_send_button)) {
 
-            /*chatAdapter.showLastMessage(chatItemData);
-            rv_ac_msg_List.smoothScrollToPosition(chatAdapter.getItemCount() - 1);*/
+            //chatAdapter.showLastMessage(chatItemData);
 
-
-            presenter.onSendMessage(et_ac_send_text.getText().toString());
+            presenter.sendMessage(et_ac_send_text.getText().toString());
             et_ac_send_text.setText("");
-
 
         }
         if (view.equals(iv_ac_arrow_back)) {
@@ -83,8 +81,8 @@ public class ChatActivity extends AppCompatActivity implements
     public void onReciveAllMessagesSuccess(ArrayList<ChatItemData> mDataset) {
         if (chatAdapter != null) {
             chatAdapter.update(mDataset);
+            rv_ac_msg_List.smoothScrollToPosition(chatAdapter.getItemCount() - 1);
         }
-
     }
 
     @Override

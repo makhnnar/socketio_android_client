@@ -28,8 +28,11 @@ public class ChatContract {
 
     public interface Presenter{
 
-        void onSendMessage(String msj);
-        void onDeleteMessage();
+        void sendMessage(String msj);
+        void deleteMessage();
+        void getAllMessage();
+
+
 
     }
 
