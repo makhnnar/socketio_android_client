@@ -28,7 +28,8 @@ public class ChatActivosPresenter implements
     }
 
     @Override
-    public void deleteChatActivos(int pos)  { view.getChatActivosFailed();
+    public void deleteChatActivos(int pos)  {
+        view.getChatActivosFailed();
 
 
     }

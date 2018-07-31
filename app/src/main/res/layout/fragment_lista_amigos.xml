@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.home.listaamigos.ListaAmigosFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_fla_reload"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_fla_lista_amigo"
@@ -11,4 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-</LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.house.domotic.my.mylogintest.views.home.chatactivos;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +28,14 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
         ImageView iv_pli_cancel;
         ImageView iv_pli_foto_user;
 
+
         ViewHolder(View v) {
             super(v);
             tv_pli_ultimo_mensaje = v.findViewById(R.id.tv_pli_ultimo_mensaje);
             tv_pli_nombre_usuario = v.findViewById(R.id.tv_pli_nombre_usuario);
             iv_pli_cancel = v.findViewById(R.id.iv_pli_cancel);
             iv_pli_foto_user = v.findViewById(R.id.iv_pli_foto_user);
+
         }
     }
 

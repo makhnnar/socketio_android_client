@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 public class ChatActivosFragment extends Fragment implements
         ChatActivosAdapter.OnItemChatClickListener,
         DeleteChatDialog.OnDialogClickListener,
-        ChatActivosContract.View{
+        ChatActivosContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView rv_fca_chat_activos;
 
@@ -39,6 +40,8 @@ public class ChatActivosFragment extends Fragment implements
     private int pos = -1;
 
     private ChatActivosPresenter presenter;
+
+    private SwipeRefreshLayout srl_fca_loading;
 
     public static ChatActivosFragment newInstance() {
         ChatActivosFragment fragment = new ChatActivosFragment();
@@ -59,6 +62,8 @@ public class ChatActivosFragment extends Fragment implements
         presenter = new ChatActivosPresenter(this);
 
         rv_fca_chat_activos = view.findViewById(R.id.rv_fca_chat_activos);
+        srl_fca_loading = view.findViewById(R.id.srl_fca_loading);
+        srl_fca_loading.setOnRefreshListener(this);
 
         // Instanciamos un linear layout manager para setearlo en el RecyclerView
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -71,6 +76,7 @@ public class ChatActivosFragment extends Fragment implements
 
         rv_fca_chat_activos.setAdapter(chatActivosAdapter);
         presenter.getChatActivos();
+
 
         return view;
     }
@@ -114,12 +120,19 @@ public class ChatActivosFragment extends Fragment implements
     public void getChatActivosSuccess(ArrayList<ChatActivosItemData> mDataset) {
         if (chatActivosAdapter != null) {
             chatActivosAdapter.update(mDataset);
+            srl_fca_loading.setRefreshing(false);
         }
 
     }
 
     @Override
     public void getChatActivosFailed() {
+
+    }
+
+    @Override
+    public void onRefresh() {
+        presenter.getChatActivos();
 
     }
 }

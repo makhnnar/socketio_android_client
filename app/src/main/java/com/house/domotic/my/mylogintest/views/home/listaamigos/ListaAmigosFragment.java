@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,8 +26,8 @@ import java.util.ArrayList;
 public class ListaAmigosFragment extends Fragment implements
         ListaAmigosAdapter.OnItemChatClickListener,
         DeleteFriendDialog.OnFriendDialogClickListener,
-        ListaAmigosContract.View
-        {
+        ListaAmigosContract.View, SwipeRefreshLayout.OnRefreshListener
+    {
 
     private RecyclerView rv_fla_lista_amigo;
 
@@ -39,6 +40,8 @@ public class ListaAmigosFragment extends Fragment implements
     private int pos = -1;
 
     private ListaAmigosPresenter presenter;
+
+    private SwipeRefreshLayout srl_fla_reload;
 
     public static ListaAmigosFragment newInstance() {
         ListaAmigosFragment fragment = new ListaAmigosFragment();
@@ -59,6 +62,8 @@ public class ListaAmigosFragment extends Fragment implements
         presenter = new ListaAmigosPresenter(this);
 
         rv_fla_lista_amigo = view.findViewById(R.id.rv_fla_lista_amigo);
+        srl_fla_reload = view.findViewById(R.id.srl_fla_reload);
+        srl_fla_reload.setOnRefreshListener(this);
 
         // Instanciamos un linear layout manager para setearlo en el RecyclerView
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -74,6 +79,8 @@ public class ListaAmigosFragment extends Fragment implements
 
 
         rv_fla_lista_amigo.setAdapter(listaAmigosAdapter);
+
+
 
         return view;
     }
@@ -118,11 +125,18 @@ public class ListaAmigosFragment extends Fragment implements
             public void getListaAmigosSuccess(ArrayList<ListaAmigosItemData> mDataset) {
                 if (listaAmigosAdapter != null) {
                     listaAmigosAdapter.update(mDataset);
+                    srl_fla_reload.setRefreshing(false);
                 }
             }
 
             @Override
             public void getListaAmigosFailed() {
+
+            }
+
+            @Override
+            public void onRefresh() {
+                presenter.getListaAmigos();
 
             }
         }
