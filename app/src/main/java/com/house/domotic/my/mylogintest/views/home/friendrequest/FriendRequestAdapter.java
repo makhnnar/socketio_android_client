@@ -65,6 +65,15 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
         holder.tv_pfr_nombre_usuario.setText(mDataset.get(position).getNombre());
         holder.tv_pfr_mensaje.setText(mDataset.get(position).getMensaje());
         holder.tv_pfr_hora.setText(mDataset.get(position).getHora());
+        holder.iv_pfr_foto_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listener != null) {
+                    listener.onViewProfile(position);
+                }
+
+            }
+        });
         holder.iv_pfr_accept_friend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +93,13 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
         });
     }
 
+    public void deleteFrienshipRequest(int position) {
+        if (position > -1) {
+            mDataset.remove(position);
+            notifyDataSetChanged();
+        }
+    }
+
     @Override
     public int getItemCount() {
         return mDataset.size();
@@ -97,6 +113,8 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
         void onAcceptFriendship(int pos);
 
         void onDeclineFriendship(int pos);
+
+        void onViewProfile(int pos);
     }
     public void update(ArrayList<FriendRequestItemData> mDataset){
         if (mDataset != null){

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,8 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
         TextView tv_pli_nombre_usuario;
         ImageView iv_pli_cancel;
         ImageView iv_pli_foto_user;
+        ImageButton ib_pd_go_chat;
+        ImageButton ib_pd_go_profile;
 
         ViewHolder(View v) {
             super(v);
@@ -34,6 +37,10 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
             tv_pli_nombre_usuario = v.findViewById(R.id.tv_pli_nombre_usuario);
             iv_pli_cancel = v.findViewById(R.id.iv_pli_cancel);
             iv_pli_foto_user = v.findViewById(R.id.iv_pli_foto_user);
+            ib_pd_go_chat = v.findViewById(R.id.ib_pd_go_chat);
+            ib_pd_go_profile = v.findViewById(R.id.ib_pd_go_profile);
+
+
         }
     }
 

@@ -1,24 +1,24 @@
-package com.house.domotic.my.mylogintest.views.home.friendrequest;
+package com.house.domotic.my.mylogintest.views.home.profile;
 
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.house.domotic.my.mylogintest.R;
 
-public class DeclineFriendDialog extends DialogFragment implements View.OnClickListener{
+public class ProfileDialog extends DialogFragment implements View.OnClickListener{
 
     private OnDialogClickListener listener;
 
-    private Button btn_afd_decline_friend_yes;
-    private Button btn_afd_decline_friend_no;
+    private ImageView ib_pd_go_profile;
+    private ImageView ib_pd_go_chat;
 
 
     @Override
@@ -28,13 +28,13 @@ public class DeclineFriendDialog extends DialogFragment implements View.OnClickL
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.decline_friendship_dialog, container, false);
+        View v = inflater.inflate(R.layout.perfil_dialog, container, false);
 
-        btn_afd_decline_friend_yes = v.findViewById(R.id.btn_afd_decline_friend_yes);
-        btn_afd_decline_friend_no = v.findViewById(R.id.btn_afd_decline_friend_no);
+        ib_pd_go_profile = v.findViewById(R.id.ib_pd_go_profile);
+        ib_pd_go_chat = v.findViewById(R.id.ib_pd_go_chat);
 
-        btn_afd_decline_friend_yes.setOnClickListener(this);
-        btn_afd_decline_friend_no.setOnClickListener(this);
+        ib_pd_go_profile.setOnClickListener(this);
+        ib_pd_go_chat.setOnClickListener(this);
 
         return v;
     }
@@ -54,22 +54,21 @@ public class DeclineFriendDialog extends DialogFragment implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if (view.equals(btn_afd_decline_friend_yes)){
-            Log.i("pos", "---"+(listener != null));
-            if (listener != null){
-                Log.i("pos", "--- entro");
-                listener.onDecline();
+        if (view.equals(ib_pd_go_profile)){
+           if (listener != null){
+              listener.onGoProfile();
                 this.dismiss();
             }
         }
-        if (view.equals(btn_afd_decline_friend_no)){
+        if (view.equals(ib_pd_go_chat)){
             this.dismiss();
         }
     }
 
     public interface OnDialogClickListener {
 
-        void onDecline();
+        void onGoProfile();
+        void onGoChat();
 
     }
 }

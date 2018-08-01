@@ -55,9 +55,9 @@ public class AcceptFriendDialog extends DialogFragment implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if (view.equals(btn_afd_accept_friend_yes)){
-            Log.i("pos", "---"+(listener != null));
+            //Log.i("pos", "---"+(listener != null));
             if (listener != null){
-                Log.i("pos", "--- entro");
+                //Log.i("pos", "--- entro");
                 listener.onAcept();
                 this.dismiss();
             }

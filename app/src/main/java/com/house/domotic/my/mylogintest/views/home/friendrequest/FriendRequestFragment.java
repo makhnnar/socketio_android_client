@@ -2,24 +2,31 @@ package com.house.domotic.my.mylogintest.views.home.friendrequest;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.house.domotic.my.mylogintest.R;
+import com.house.domotic.my.mylogintest.views.home.HomeActivity;
 import com.house.domotic.my.mylogintest.views.home.friendrequest.model.FriendRequestItemData;
 import com.house.domotic.my.mylogintest.views.home.friendrequest.mvp.FriendRequestContract;
 import com.house.domotic.my.mylogintest.views.home.friendrequest.mvp.FriendRequestPresenter;
+import com.house.domotic.my.mylogintest.views.home.profile.ProfileDialog;
 
 import java.util.ArrayList;
 
 public class FriendRequestFragment extends Fragment implements
              FriendRequestContract.View,
              SwipeRefreshLayout.OnRefreshListener,
-             FriendRequestAdapter.OnFriendRequestClickListener
+             FriendRequestAdapter.OnFriendRequestClickListener,
+            DeclineFriendDialog.OnDialogClickListener,
+            AcceptFriendDialog.OnDialogClickListener,
+            ProfileDialog.OnDialogClickListener
 {
 
     private RecyclerView rv_ffr_petitions;
@@ -95,11 +102,40 @@ public class FriendRequestFragment extends Fragment implements
 
     @Override
     public void onAcceptFriendship(int pos) {
+        this.pos = pos;
+        FragmentTransaction ft = this.getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        ft.addToBackStack(null);
+        AcceptFriendDialog dialogFragment = new AcceptFriendDialog();
+        dialogFragment.setListener(this);
+        dialogFragment.show(ft, "dialog");
+        Log.i("pos", "--- "+pos);
 
     }
 
     @Override
     public void onDeclineFriendship(int pos) {
+        this.pos = pos;
+        FragmentTransaction ft = this.getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        ft.addToBackStack(null);
+        DeclineFriendDialog dialogFragment = new DeclineFriendDialog();
+        dialogFragment.setListener(this);
+        dialogFragment.show(ft, "dialog");
+        Log.i("pos", "--- "+pos);
+
+    }
+
+    @Override
+    public void onViewProfile(int pos) {
+        this.pos = pos;
+        FragmentTransaction ft = this.getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        ft.addToBackStack(null);
+        ProfileDialog dialogFragment = new ProfileDialog();
+        dialogFragment.setListener(this);
+        dialogFragment.show(ft, "dialog");
+        Log.i("pos", "--- "+pos);
 
     }
 
@@ -114,6 +150,31 @@ public class FriendRequestFragment extends Fragment implements
     @Override
     public void onRefresh() {
         presenter.getAllFrienshipNotifications();
+
+    }
+
+
+    @Override
+    public void onAcept() {
+
+
+
+    }
+
+    @Override
+    public void onDecline() {
+        friendRequestAdapter.deleteFrienshipRequest(pos);
+        pos = -1;
+
+    }
+
+    @Override
+    public void onGoProfile() {
+
+    }
+
+    @Override
+    public void onGoChat() {
 
     }
 
