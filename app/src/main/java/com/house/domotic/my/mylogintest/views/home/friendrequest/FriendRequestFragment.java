@@ -1,5 +1,6 @@
 package com.house.domotic.my.mylogintest.views.home.friendrequest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.house.domotic.my.mylogintest.R;
+import com.house.domotic.my.mylogintest.views.chat.ChatActivity;
 import com.house.domotic.my.mylogintest.views.home.HomeActivity;
 import com.house.domotic.my.mylogintest.views.home.friendrequest.model.FriendRequestItemData;
 import com.house.domotic.my.mylogintest.views.home.friendrequest.mvp.FriendRequestContract;
 import com.house.domotic.my.mylogintest.views.home.friendrequest.mvp.FriendRequestPresenter;
+import com.house.domotic.my.mylogintest.views.home.profile.ProfileActivity;
 import com.house.domotic.my.mylogintest.views.home.profile.ProfileDialog;
 
 import java.util.ArrayList;
@@ -170,11 +173,15 @@ public class FriendRequestFragment extends Fragment implements
 
     @Override
     public void onGoProfile() {
+        Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
+        startActivity(intent);
 
     }
 
     @Override
     public void onGoChat() {
+        Intent intent = new Intent(this.getActivity(), ChatActivity.class);
+        startActivity(intent);
 
     }
 

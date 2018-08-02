@@ -102,6 +102,7 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
     public interface OnItemChatClickListener {
         void onGoChat(ChatActivosItemData chatActivosItemData);
         void onDeleteChat(int pos);
+        void onGoProfile();
     }
     public void update(ArrayList<ChatActivosItemData> mDataset){
         if (mDataset != null){

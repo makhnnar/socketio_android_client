@@ -60,7 +60,7 @@ public class ChatActivity extends AppCompatActivity implements
         rv_ac_msg_List.setLayoutManager(mLayoutManager);
 
         /*for(int i=0;i<10;i++){
-            mDataset.add(new ChatItemData("nombre "+i,"mensaje "+i,"foto "+i, "hora"+i));
+            mDataset.add(new ProfileItemData("nombre "+i,"mensaje "+i,"foto "+i, "hora"+i));
         }*/
 
         chatAdapter = new ChatAdapter(this.getBaseContext(), mDataset);

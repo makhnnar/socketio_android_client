@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.home.HomeActivity" />
-        <activity android:name=".views.chat.ChatActivity"></activity>
+        <activity android:name=".views.chat.ChatActivity" />
+        <activity android:name=".views.home.profile.ProfileActivity"></activity>
     </application>
 
 </manifest>

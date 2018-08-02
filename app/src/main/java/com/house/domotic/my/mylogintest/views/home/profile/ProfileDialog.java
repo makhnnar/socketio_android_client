@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import com.house.domotic.my.mylogintest.R;
 
-public class ProfileDialog extends DialogFragment implements View.OnClickListener{
+public class ProfileDialog extends DialogFragment implements View.OnClickListener {
 
     private OnDialogClickListener listener;
 
@@ -54,21 +54,25 @@ public class ProfileDialog extends DialogFragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        if (view.equals(ib_pd_go_profile)){
-           if (listener != null){
-              listener.onGoProfile();
+        if (view.equals(ib_pd_go_profile)) {
+            if (listener != null) {
+                listener.onGoProfile();
                 this.dismiss();
             }
         }
-        if (view.equals(ib_pd_go_chat)){
-            this.dismiss();
+        if (view.equals(ib_pd_go_chat)) {
+            if (listener != null) {
+                listener.onGoChat();
+                this.dismiss();
+
+            }
         }
     }
 
     public interface OnDialogClickListener {
 
         void onGoProfile();
-        void onGoChat();
 
+        void onGoChat();
     }
 }

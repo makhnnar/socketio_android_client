@@ -20,6 +20,7 @@ import com.house.domotic.my.mylogintest.views.chat.ChatActivity;
 import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivosItemData;
 import com.house.domotic.my.mylogintest.views.home.chatactivos.mvp.ChatActivosContract;
 import com.house.domotic.my.mylogintest.views.home.chatactivos.mvp.ChatActivosPresenter;
+import com.house.domotic.my.mylogintest.views.home.profile.ProfileActivity;
 
 
 import java.util.ArrayList;
@@ -27,7 +28,9 @@ import java.util.ArrayList;
 public class ChatActivosFragment extends Fragment implements
         ChatActivosAdapter.OnItemChatClickListener,
         DeleteChatDialog.OnDialogClickListener,
-        ChatActivosContract.View, SwipeRefreshLayout.OnRefreshListener {
+        ChatActivosContract.View, SwipeRefreshLayout.OnRefreshListener
+
+{
 
     private RecyclerView rv_fca_chat_activos;
 
@@ -111,6 +114,13 @@ public class ChatActivosFragment extends Fragment implements
     }
 
     @Override
+    public void onGoProfile() {
+        Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
+        startActivity(intent);
+
+    }
+
+    @Override
     public void onAcept() {
         chatActivosAdapter.deleteChatActivo(pos);
         pos = -1;
@@ -135,4 +145,5 @@ public class ChatActivosFragment extends Fragment implements
         presenter.getChatActivos();
 
     }
+
 }
