@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import com.house.domotic.my.mylogintest.views.home.listaamigos.model.DeleteFrien
 import com.house.domotic.my.mylogintest.views.home.listaamigos.model.ListaAmigosItemData;
 import com.house.domotic.my.mylogintest.views.home.listaamigos.mvp.ListaAmigosContract;
 import com.house.domotic.my.mylogintest.views.home.listaamigos.mvp.ListaAmigosPresenter;
+import com.house.domotic.my.mylogintest.views.home.profile.ProfileActivity;
+import com.house.domotic.my.mylogintest.views.home.profile.ProfileDialog;
 
 import java.util.ArrayList;
 
@@ -26,7 +29,8 @@ import java.util.ArrayList;
 public class ListaAmigosFragment extends Fragment implements
         ListaAmigosAdapter.OnItemChatClickListener,
         DeleteFriendDialog.OnFriendDialogClickListener,
-        ListaAmigosContract.View, SwipeRefreshLayout.OnRefreshListener
+        ListaAmigosContract.View, SwipeRefreshLayout.OnRefreshListener,
+        ProfileDialog.OnDialogClickListener
     {
 
     private RecyclerView rv_fla_lista_amigo;
@@ -115,7 +119,19 @@ public class ListaAmigosFragment extends Fragment implements
         dialogFragment.show(ft, "dialog");
     }
 
-    @Override
+        @Override
+        public void onGoProfileDialog(int pos) {
+            this.pos = pos;
+            FragmentTransaction ft = this.getFragmentManager().beginTransaction();
+            Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+            ft.addToBackStack(null);
+            ProfileDialog dialogFragment = new ProfileDialog();
+            dialogFragment.setListener(this);
+            dialogFragment.show(ft, "dialog");
+            Log.i("pos", "--- "+pos);
+        }
+
+        @Override
     public void onFriendAcept() {
         listaAmigosAdapter.deleteFriend(pos);
         pos = -1;
@@ -139,4 +155,17 @@ public class ListaAmigosFragment extends Fragment implements
                 presenter.getListaAmigos();
 
             }
+
+        public void onGoProfile() {
+            Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
+            startActivity(intent);
+
         }
+
+        @Override
+        public void onGoChat() {
+            Intent intent = new Intent(this.getActivity(), ChatActivity.class);
+            startActivity(intent);
+
+        }
+    }

@@ -61,6 +61,14 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
 
         holder.tv_pli_nombre_usuario.setText(mDataset.get(position).getNombre());
         holder.tv_pli_ultimo_mensaje.setText(mDataset.get(position).getMensaje());
+        holder.iv_pli_foto_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(listener != null) {
+                    listener.onGoProfileDialog(position);
+                }
+            }
+        });
         holder.tv_pli_nombre_usuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,7 +110,9 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
     public interface OnItemChatClickListener {
         void onGoChat(ChatActivosItemData chatActivosItemData);
         void onDeleteChat(int pos);
-        void onGoProfile();
+        void onGoProfileDialog(int pos);
+
+
     }
     public void update(ArrayList<ChatActivosItemData> mDataset){
         if (mDataset != null){

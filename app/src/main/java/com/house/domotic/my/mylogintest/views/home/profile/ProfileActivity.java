@@ -74,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if (view.equals(iv_ap_message_friend)){
-            Intent intent = new Intent(this, ProfileActivity.class);
+            Intent intent = new Intent(this, ChatActivity.class);
             startActivity(intent);
         }
 

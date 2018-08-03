@@ -1,11 +1,15 @@
 package com.house.domotic.my.mylogintest.views.chat;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,11 +19,18 @@ import com.house.domotic.my.mylogintest.R;
 import com.house.domotic.my.mylogintest.views.chat.model.ChatItemData;
 import com.house.domotic.my.mylogintest.views.chat.mvp.ChatContract;
 import com.house.domotic.my.mylogintest.views.chat.mvp.ChatPresenter;
+import com.house.domotic.my.mylogintest.views.home.profile.ProfileActivity;
+import com.house.domotic.my.mylogintest.views.home.profile.ProfileDialog;
 
 import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity implements
-        View.OnClickListener, ChatContract.View, SwipeRefreshLayout.OnRefreshListener {
+        View.OnClickListener,
+        ChatContract.View,
+        SwipeRefreshLayout.OnRefreshListener,
+        ProfileDialog.OnDialogClickListener
+
+{
 
 
     private RecyclerView rv_ac_msg_List;
@@ -29,8 +40,10 @@ public class ChatActivity extends AppCompatActivity implements
     private ImageView iv_ac_send_button;
     private EditText et_ac_send_text;
     private ImageView iv_ac_arrow_back;
+    private ImageView iv_ac_foto_user;
     private ChatPresenter presenter;
     private SwipeRefreshLayout srl_ac_chat_refresh_layout;
+    private int pos = -1;
     //private ProgressBar pb_ac_progress_bar;
 
 
@@ -48,6 +61,9 @@ public class ChatActivity extends AppCompatActivity implements
         iv_ac_arrow_back.setOnClickListener(this);
         srl_ac_chat_refresh_layout = findViewById(R.id.srl_ac_chat_refresh_layout);
         srl_ac_chat_refresh_layout.setOnRefreshListener(this);
+        iv_ac_foto_user = findViewById(R.id.iv_ac_foto_user);
+        iv_ac_foto_user.setOnClickListener(this);
+
         //pb_ac_progress_bar = findViewById(R.id.pb_ac_progress_bar);
 
 
@@ -84,6 +100,10 @@ public class ChatActivity extends AppCompatActivity implements
         if (view.equals(iv_ac_arrow_back)) {
             onBackPressed();
         }
+        if (view.equals(iv_ac_foto_user)){
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        }
 
     }
 
@@ -118,6 +138,23 @@ public class ChatActivity extends AppCompatActivity implements
         presenter.getAllMessage();
         //pb_ac_progress_bar.setVisibility(View.VISIBLE);
 
+
+    }
+
+
+
+
+
+    public void onGoProfile() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onGoChat() {
+        Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
 
     }
 }

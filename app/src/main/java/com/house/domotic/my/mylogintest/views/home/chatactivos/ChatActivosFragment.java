@@ -21,6 +21,7 @@ import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivos
 import com.house.domotic.my.mylogintest.views.home.chatactivos.mvp.ChatActivosContract;
 import com.house.domotic.my.mylogintest.views.home.chatactivos.mvp.ChatActivosPresenter;
 import com.house.domotic.my.mylogintest.views.home.profile.ProfileActivity;
+import com.house.domotic.my.mylogintest.views.home.profile.ProfileDialog;
 
 
 import java.util.ArrayList;
@@ -28,7 +29,10 @@ import java.util.ArrayList;
 public class ChatActivosFragment extends Fragment implements
         ChatActivosAdapter.OnItemChatClickListener,
         DeleteChatDialog.OnDialogClickListener,
-        ChatActivosContract.View, SwipeRefreshLayout.OnRefreshListener
+        ChatActivosContract.View,
+        SwipeRefreshLayout.OnRefreshListener,
+        ProfileDialog.OnDialogClickListener
+
 
 {
 
@@ -114,9 +118,15 @@ public class ChatActivosFragment extends Fragment implements
     }
 
     @Override
-    public void onGoProfile() {
-        Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
-        startActivity(intent);
+    public void onGoProfileDialog(int pos) {
+        this.pos = pos;
+        FragmentTransaction ft = this.getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        ft.addToBackStack(null);
+        ProfileDialog dialogFragment = new ProfileDialog();
+        dialogFragment.setListener(this);
+        dialogFragment.show(ft, "dialog");
+        Log.i("pos", "--- "+pos);
 
     }
 
@@ -146,4 +156,16 @@ public class ChatActivosFragment extends Fragment implements
 
     }
 
+    public void onGoProfile() {
+        Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onGoChat() {
+        Intent intent = new Intent(this.getActivity(), ChatActivity.class);
+        startActivity(intent);
+
+    }
 }

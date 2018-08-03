@@ -69,6 +69,15 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
         holder.tv_pli_nombre_usuario.setText(mDataset.get(position).getNombre());
         holder.tv_pli_ultimo_mensaje.setText(mDataset.get(position).getEstado());
         //Glide.with(mContext).load(mDataset.get(position).getFoto()).into(holder.iv_pli_foto_user);
+        holder.iv_pli_foto_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listener != null) {
+                    listener.onGoProfileDialog((position));
+                }
+            }
+        });
+
         holder.tv_pli_nombre_usuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +121,8 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
         void onGoChat(ListaAmigosItemData listaAmigosItemData);
 
         void onDeleteFriend(int pos);
+
+        void onGoProfileDialog(int pos);
     }
 
     public void update(ArrayList<ListaAmigosItemData> mDataset) {
