@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".views.login.LoginActivity"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp">
+
+    <LinearLayout
+        android:id="@+id/ll_pcli_msg_bubble"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_pcli_msg_foto_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_pcli_foto_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="name"
+                android:textAlignment="center"
+                android:src="@drawable/ic_profile"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_pcli_hora_msg_nombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="6dp">
+
+            <LinearLayout
+                android:id="@+id/ll_pcli_hora_msg_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                >
+
+                <TextView
+                    android:id="@+id/tv_pcli_nombre_usuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="nombre"
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="start" />
+
+
+                <TextView
+                    android:id="@+id/tv_pcli_hora"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="hora"
+                    android:textAlignment="viewStart"
+                    android:gravity="start"
+                    android:paddingTop="4dp"/>
+
+            </LinearLayout>
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/tv_pcli_mensaje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="mensaje"
+                android:textAlignment="viewStart"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:gravity="start" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        />
+
+</android.widget.LinearLayout>
