@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="black">#000000</color>
+    <color name="purple_lighten_5">#f3e5f5</color>
+    <color name="purple_lighten_4">#e1bee7</color>
+    <color name="purple_lighten_3">#ce93d8</color>
+    <color name="purple_lighten_2">#ba68c8</color>
+    <color name="purple_lighten_1">#ab47bc</color>
+    <color name="colorPrimary">#9c27b0</color>
+    <color name="colorPrimaryDark">#8e24aa </color>
+    <color name="purple_darken_2">#7b1fa2 </color>
+    <color name="purple_darken_3">#6a1b9a </color>
+    <color name="purple_darken_4">#4a148c </color>
+    <color name="colorAccent">#ea80fc </color>
+    <color name="purple_accent_2">#e040fb </color>
+    <color name="purple_accent_3">#d500f9 </color>
+    <color name="purple_accent_4">#aa00ff </color>
+
+
+
 </resources>

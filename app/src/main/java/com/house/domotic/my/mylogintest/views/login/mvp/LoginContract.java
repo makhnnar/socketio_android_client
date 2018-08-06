@@ -1,4 +1,4 @@
-package com.house.domotic.my.mylogintest.mvp;
+package com.house.domotic.my.mylogintest.views.login.mvp;
 
 public class LoginContract {
 
