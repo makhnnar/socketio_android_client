@@ -95,7 +95,7 @@ public class ListaAmigosManager implements IOSocketGameListener,IOSocketGameSend
                     }
                 }
                 listener.onPlayersChange(players);
-                //al finalizar el for deberiamos refrescar los players(probar)
+                //al finalizar el for deberi amos refrescar los players(probar)
             }
         }
     }
