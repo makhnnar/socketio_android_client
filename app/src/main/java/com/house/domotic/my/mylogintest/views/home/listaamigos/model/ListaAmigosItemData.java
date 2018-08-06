@@ -5,11 +5,13 @@ public class ListaAmigosItemData {
     private String nombre;
     private String estado;
     private String foto;
+    private String id;
 
     public ListaAmigosItemData(String nombre, String estado, String foto) {
         this.nombre = nombre;
         this.estado = estado;
         this.foto = foto;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -35,4 +37,8 @@ public class ListaAmigosItemData {
     public void setFoto(String foto) {
         this.foto = foto;
     }
+
+    public String getId() {  return id;  }
+
+    public void setId(String id) {   this.id = id;  }
 }

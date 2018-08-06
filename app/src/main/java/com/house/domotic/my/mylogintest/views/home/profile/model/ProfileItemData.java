@@ -6,6 +6,7 @@ public class ProfileItemData {
     private String foto;
     private String conexion;
     private String telefono;
+    private String id;
 
 
     public ProfileItemData(String nombre, String estado, String foto, String conexion, String telefono) {
@@ -14,6 +15,7 @@ public class ProfileItemData {
         this.foto = foto;
         this.conexion = conexion;
         this.telefono = telefono;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -53,4 +55,8 @@ public class ProfileItemData {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public String getId() {  return id;    }
+
+    public void setId(String id) {  this.id = id;    }
 }
