@@ -5,11 +5,13 @@ public class ChatActivosItemData {
     private String nombre;
     private String mensaje;
     private String foto;
+    private String id;
 
     public ChatActivosItemData(String nombre, String mensaje, String foto) {
         this.nombre = nombre;
         this.mensaje = mensaje;
         this.foto = foto;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -34,5 +36,13 @@ public class ChatActivosItemData {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

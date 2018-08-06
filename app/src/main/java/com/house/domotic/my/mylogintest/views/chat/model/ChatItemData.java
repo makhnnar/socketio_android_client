@@ -1,6 +1,7 @@
 package com.house.domotic.my.mylogintest.views.chat.model;
 
 public class ChatItemData {
+    private String id;
     private String nombre;
     private String mensaje;
     private String foto;
@@ -8,11 +9,12 @@ public class ChatItemData {
 
 
 
-    public ChatItemData(  String nombre, String mensaje, String foto, String hora) {
+    public ChatItemData(  String nombre, String mensaje, String foto, String hora, String id) {
         this.nombre = nombre;
         this.mensaje = mensaje;
         this.foto = foto;
         this.hora = hora;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -46,4 +48,8 @@ public class ChatItemData {
     public void setHora(String hora) {
         this.hora = hora;
     }
+
+    public String getId() {  return id;    }
+
+    public void setId(String id) { this.id = id;   }
 }

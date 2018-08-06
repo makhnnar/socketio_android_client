@@ -6,6 +6,7 @@ public class FriendRequestItemData {
     private String mensaje;
     private String foto;
     private String hora;
+    private String id;
 
 
     public FriendRequestItemData(String nombre, String mensaje, String foto, String hora) {
@@ -13,6 +14,7 @@ public class FriendRequestItemData {
         this.mensaje = mensaje;
         this.foto = foto;
         this.hora = hora;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -46,4 +48,8 @@ public class FriendRequestItemData {
     public void setHora(String hora) {
         this.hora = hora;
     }
+
+    public String getId() { return id;   }
+
+    public void setId(String id) {   this.id = id;   }
 }
