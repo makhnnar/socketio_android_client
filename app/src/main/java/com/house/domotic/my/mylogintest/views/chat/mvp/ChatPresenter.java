@@ -70,7 +70,8 @@ public class ChatPresenter implements
                 "nombre",
                 msj,
                 "foto",
-                "hora"
+                "hora",
+                "id"
 
         );
         mDataset.add(chatItemData);

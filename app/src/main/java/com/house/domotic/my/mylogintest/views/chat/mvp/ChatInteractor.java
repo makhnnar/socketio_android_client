@@ -14,7 +14,7 @@ public class ChatInteractor {
         ArrayList<ChatItemData> mDataset = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
-            mDataset.add(new ChatItemData("nombre " + i, "mensaje", "mensaje " + i, "foto " + i));
+            mDataset.add(new ChatItemData("nombre " + i, "mensaje", "mensaje " + i, "foto " + i, "id" + i));
 
         }
 
