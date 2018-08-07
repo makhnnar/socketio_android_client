@@ -28,7 +28,7 @@ public class ListaAmigosPresenter implements
 
     @Override
     public void getListaAmigos() {
-        Log.i("cualquiera", "getListaAmigos: haciendo peticion");
+      //  Log.i("cualquiera", "getListaAmigos: haciendo peticion");
         interactor.requestListas();
     }
 
@@ -40,7 +40,7 @@ public class ListaAmigosPresenter implements
     @Override
     public void listaAmigosSuccess(ArrayList<ListaAmigosItemData> mDataset) {
         if (mDataset != null) {
-            for (int i = 0; i < mDataset.size(); i++)Log.i("cualquiera", "getListaAmigosSuccess:  "+ " "+ mDataset.get(i).getId());
+            //for (int i = 0; i < mDataset.size(); i++)Log.i("cualquiera", "getListaAmigosSuccess:  "+ " "+ mDataset.get(i).getId());
             this.mDataset.clear();
             this.mDataset = mDataset;
             view.getListaAmigosSuccess(mDataset);

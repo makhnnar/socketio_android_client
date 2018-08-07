@@ -62,7 +62,7 @@ public class FriendRequestFragment extends Fragment implements
 
         View view = inflater.inflate(R.layout.fragment_frienship_request, container, false);
 
-        presenter = new FriendRequestPresenter(this);
+        presenter = new FriendRequestPresenter(this, getActivity());
 
         rv_ffr_petitions = view.findViewById(R.id.rv_ffr_petitions);
         srl_ffr_reload = view.findViewById(R.id.srl_ffr_reload);
@@ -74,7 +74,7 @@ public class FriendRequestFragment extends Fragment implements
         rv_ffr_petitions.setLayoutManager(mLayoutManager);
 
         for (int i = 0; i < 10; i++) {
-            mDataset.add(new FriendRequestItemData("nombre " + i, "mensaje " + i, "foto " + i, "hora" + i));
+            mDataset.add(new FriendRequestItemData("nombre " + i, "estado " + i, "foto " + i, "hora" + i, "id" + i));
         }
 
         friendRequestAdapter = new FriendRequestAdapter(getContext(), mDataset);
@@ -144,7 +144,8 @@ public class FriendRequestFragment extends Fragment implements
 
     @Override
     public void onFriendRequestListSuccess(ArrayList<FriendRequestItemData> mDataset) {
-        if (friendRequestAdapter != null) {
+        if (friendRequestAdapter != null && rv_ffr_petitions != null) {
+            for (int i = 0; i < mDataset.size(); i++)Log.i("cualquiera", "onFriendRequestListSuccess:  "+ " "+ mDataset.get(i).getId());
             friendRequestAdapter.update(mDataset);
             srl_ffr_reload.setRefreshing(false);
         }

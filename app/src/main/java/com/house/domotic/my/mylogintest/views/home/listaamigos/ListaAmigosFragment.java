@@ -138,7 +138,7 @@ public class ListaAmigosFragment extends Fragment implements
     @Override
     public void getListaAmigosSuccess(ArrayList<ListaAmigosItemData> mDataset) {
         if (listaAmigosAdapter != null && rv_fla_lista_amigo != null) {
-           for (int i = 0; i < mDataset.size(); i++)Log.i("cualquiera", "getListaAmigosSuccess:  "+ " "+ mDataset.get(i).getId());
+          // for (int i = 0; i < mDataset.size(); i++)Log.i("cualquiera", "getListaAmigosSuccess:  "+ " "+ mDataset.get(i).getId());
             listaAmigosAdapter.update(mDataset);
             srl_fla_reload.setRefreshing(false);
         }

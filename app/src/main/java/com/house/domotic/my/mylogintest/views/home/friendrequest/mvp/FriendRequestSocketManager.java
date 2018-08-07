@@ -1,23 +1,22 @@
-package com.house.domotic.my.mylogintest.views.home.listaamigos.mvp;
+package com.house.domotic.my.mylogintest.views.home.friendrequest.mvp;
 
 import android.app.Activity;
 import android.util.Log;
 
-import org.json.JSONObject;
-
+import com.house.domotic.my.mylogintest.views.home.listaamigos.mvp.ListaAmigosContract;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
-public class ListaAmigosSocketManager {
+public class FriendRequestSocketManager {
 
     private static Socket socket;
-    private ListaAmigosContract.FriendInteractor listener;
+    private FriendRequestContract.FriendInteractor listener;
     private String url = "http://192.168.0.103:4005";
 
 
-    public ListaAmigosSocketManager(ListaAmigosContract.FriendInteractor listener, Activity activity){
+    public FriendRequestSocketManager(FriendRequestContract.FriendInteractor listener, Activity activity){
         this.listener = listener;
         try {
             IO.Options opts = new IO.Options();
@@ -28,10 +27,10 @@ public class ListaAmigosSocketManager {
             socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                 @Override
                 public void call(Object... args) {
-                   // Log.i("cualquiera", "call: se conecto");
+                    Log.i("cualquiera", "call: se conecto");
                 }
             });
-            socket.on("friend_list", new ListaAmigosListener(this.listener, activity));
+            socket.on("friend_request", new FriendRequestListener(this.listener, activity));
 
         }catch(Exception e){
             e.printStackTrace();

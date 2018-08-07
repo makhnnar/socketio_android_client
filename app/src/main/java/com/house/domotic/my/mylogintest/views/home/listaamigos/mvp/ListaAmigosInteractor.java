@@ -42,7 +42,7 @@ public class ListaAmigosInteractor implements ListaAmigosContract.FriendInteract
                         amigo.getString("id"))
                 );
             }catch (JSONException e){
-                Log.i("cualquiera", "listaAmigosRecieve:  "+ e.getMessage());
+               // Log.i("cualquiera", "listaAmigosRecieve:  "+ e.getMessage());
             }
         }
         response.listaAmigosSuccess(mDataset);

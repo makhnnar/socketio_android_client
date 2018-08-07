@@ -2,9 +2,18 @@ package com.house.domotic.my.mylogintest.views.home.friendrequest.mvp;
 
 import com.house.domotic.my.mylogintest.views.home.friendrequest.model.FriendRequestItemData;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class FriendRequestContract {
+
+    public interface  FriendInteractor{
+
+        void friendRequestRecieve(JSONArray jsonArray);
+
+    }
+
 
 
     public interface OnAcceptFriendResponse{

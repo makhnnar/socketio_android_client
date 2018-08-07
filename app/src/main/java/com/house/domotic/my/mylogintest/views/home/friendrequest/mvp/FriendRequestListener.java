@@ -1,4 +1,4 @@
-package com.house.domotic.my.mylogintest.views.home.listaamigos.mvp;
+package com.house.domotic.my.mylogintest.views.home.friendrequest.mvp;
 
 import android.app.Activity;
 import android.util.Log;
@@ -7,13 +7,13 @@ import org.json.JSONArray;
 
 import io.socket.emitter.Emitter;
 
-public class ListaAmigosListener implements Emitter.Listener{
+public class FriendRequestListener implements Emitter.Listener{
 
-    private ListaAmigosContract.FriendInteractor listener;
+    private FriendRequestContract.FriendInteractor listener;
 
     private Activity activity;
 
-    public ListaAmigosListener(ListaAmigosContract.FriendInteractor listener, Activity activity){
+    public FriendRequestListener(FriendRequestContract.FriendInteractor listener, Activity activity){
         this.listener = listener;
         this.activity = activity;
     }
@@ -23,12 +23,12 @@ public class ListaAmigosListener implements Emitter.Listener{
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-              //  Log.i("cualquiera", "evento:  "+ arg0[0].toString());
+                Log.i("cualquiera", "listasolicitudes:  "+ arg0[0].toString());
                 try{
                     JSONArray objeto = (JSONArray) arg0[0];
-                    listener.listaAmigosRecieve(objeto);
+                    listener.friendRequestRecieve(objeto);
                 }catch(Exception e){
-               //     Log.e("cualquiera", "call: " + e.getMessage());
+                    Log.e("cualquiera", "call: " + e.getMessage());
                 }
 
             }
