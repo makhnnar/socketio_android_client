@@ -27,7 +27,7 @@ public class FriendRequestSocketManager {
             socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                 @Override
                 public void call(Object... args) {
-                    Log.i("cualquiera", "call: se conecto");
+                    Log.i("cualquiera", "call: FriendRequestSocketManager se conecto");
                 }
             });
             socket.on("friend_request", new FriendRequestListener(this.listener, activity));

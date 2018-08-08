@@ -24,7 +24,7 @@ public class ChatActivosSocketManager {
             socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                 @Override
                 public void call(Object... args) {
-                    Log.i("cualquiera", "call: se conecto");
+                    Log.i("cualquiera", "call: ChatActivosSocketManager se conecto");
                 }
             });
             socket.on("actv_chats", new ChatActivosListener(this.listener, activity));

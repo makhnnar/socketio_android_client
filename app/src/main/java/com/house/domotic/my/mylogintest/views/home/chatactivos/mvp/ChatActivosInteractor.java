@@ -1,6 +1,7 @@
 package com.house.domotic.my.mylogintest.views.home.chatactivos.mvp;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivosItemData;
 import com.house.domotic.my.mylogintest.views.home.friendrequest.model.FriendRequestItemData;
@@ -25,6 +26,7 @@ public class ChatActivosInteractor implements ChatActivosContract.FriendInteract
     }
 
     public void requestChats(){
+        Log.i("cualquiera", "requesChats: ChatActivos colocando el emit requestChats");
         manager.emit("actv_chats", "");
 
     }
@@ -41,6 +43,7 @@ public class ChatActivosInteractor implements ChatActivosContract.FriendInteract
                         conversaciones.getString("id"))
                 );
             } catch (JSONException e) {
+                Log.i("cualquiera", "chatActivosRecieve: ChatActivos "+ e.getMessage());
 
             }
         }

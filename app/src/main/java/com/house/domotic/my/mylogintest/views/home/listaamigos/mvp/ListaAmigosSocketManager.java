@@ -28,7 +28,7 @@ public class ListaAmigosSocketManager {
             socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                 @Override
                 public void call(Object... args) {
-                   // Log.i("cualquiera", "call: se conecto");
+                   Log.i("cualquiera", "call: ListaAmigosSocketManager se conecto");
                 }
             });
             socket.on("friend_list", new ListaAmigosListener(this.listener, activity));

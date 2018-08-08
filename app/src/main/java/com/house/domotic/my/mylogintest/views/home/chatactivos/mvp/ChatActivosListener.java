@@ -21,12 +21,12 @@ public class ChatActivosListener implements Emitter.Listener{
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.i("cualquiera", "listasolicitudes:  "+ arg0[0].toString());
+                Log.i("cualquiera", "listasolicitudes: ChatActivos "+ arg0[0].toString());
                 try{
                     JSONArray objeto = (JSONArray) arg0[0];
                     listener.chatActivosRecieve(objeto);
                 }catch(Exception e){
-                    Log.e("cualquiera", "call: " + e.getMessage());
+                    Log.e("cualquiera", "call: ChatActivos " + e.getMessage());
                 }
             }
         });

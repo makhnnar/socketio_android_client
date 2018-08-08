@@ -25,7 +25,7 @@ public class FriendRequestInteractor implements FriendRequestContract.FriendInte
 
     public void requestFriendship() {
         Log.i("cualquiera", "requesFriendship: colocando el emit");
-
+        manager.emit("friend_request", "");
     }
 
     @Override
