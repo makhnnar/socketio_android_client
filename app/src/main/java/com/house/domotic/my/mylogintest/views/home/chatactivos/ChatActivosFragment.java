@@ -66,7 +66,7 @@ public class ChatActivosFragment extends Fragment implements
 
         View view = inflater.inflate(R.layout.fragment_chat_activos, container, false);
 
-        presenter = new ChatActivosPresenter(this);
+        presenter = new ChatActivosPresenter(this, getActivity());
 
         rv_fca_chat_activos = view.findViewById(R.id.rv_fca_chat_activos);
         srl_fca_loading = view.findViewById(R.id.srl_fca_loading);
@@ -138,7 +138,8 @@ public class ChatActivosFragment extends Fragment implements
 
     @Override
     public void getChatActivosSuccess(ArrayList<ChatActivosItemData> mDataset) {
-        if (chatActivosAdapter != null) {
+        if (chatActivosAdapter != null && rv_fca_chat_activos != null) {
+            for (int i = 0; i < mDataset.size(); i++)Log.i("cualquiera", "getChatActivosSuccess:  "+ " "+ mDataset.get(i).getId());
             chatActivosAdapter.update(mDataset);
             srl_fca_loading.setRefreshing(false);
         }

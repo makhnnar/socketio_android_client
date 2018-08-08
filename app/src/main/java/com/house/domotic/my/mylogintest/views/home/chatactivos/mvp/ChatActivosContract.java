@@ -3,9 +3,17 @@ package com.house.domotic.my.mylogintest.views.home.chatactivos.mvp;
 import com.house.domotic.my.mylogintest.views.home.chatactivos.ChatActivosAdapter;
 import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivosItemData;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class ChatActivosContract {
+
+    public interface  FriendInteractor{
+
+        void chatActivosRecieve(JSONArray jsonArray);
+
+    }
 
 
     public interface ChatResponse{

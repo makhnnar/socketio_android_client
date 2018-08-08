@@ -36,7 +36,7 @@ public class FriendRequestContract {
     }
 
     public interface Presenter{
-// en acceptFrienship y en declineFriendship hace falta parametro
+
 
         void acceptFriendship();
         void declineFriendship(int pos);
