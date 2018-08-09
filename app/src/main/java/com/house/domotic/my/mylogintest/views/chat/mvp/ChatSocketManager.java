@@ -1,23 +1,23 @@
-package com.house.domotic.my.mylogintest.views.home.listaamigos.mvp;
+package com.house.domotic.my.mylogintest.views.chat.mvp;
 
 import android.app.Activity;
 import android.util.Log;
 
-import org.json.JSONObject;
-
+import com.house.domotic.my.mylogintest.views.home.chatactivos.mvp.ChatActivosContract;
+import com.house.domotic.my.mylogintest.views.home.chatactivos.mvp.ChatActivosListener;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
-public class ListaAmigosSocketManager {
+public class ChatSocketManager {
 
     private static Socket socket;
-    private ListaAmigosContract.FriendInteractor listener;
+    private ChatContract.FriendInteractor listener;
     private String url = "http://192.168.0.104:4005";
 
 
-    public ListaAmigosSocketManager(ListaAmigosContract.FriendInteractor listener, Activity activity){
+    public ChatSocketManager(ChatContract.FriendInteractor listener, Activity activity){
         this.listener = listener;
         try {
             IO.Options opts = new IO.Options();
@@ -28,10 +28,10 @@ public class ListaAmigosSocketManager {
             socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                 @Override
                 public void call(Object... args) {
-                   Log.i("cualquiera", "call: ListaAmigosSocketManager se conecto");
+                    Log.i("cualquiera", "call: ventanachat se conecto");
                 }
             });
-            socket.on("friend_list", new ListaAmigosListener(this.listener, activity));
+            socket.on("chats", new ChatListener(this.listener, activity));
 
         }catch(Exception e){
             e.printStackTrace();

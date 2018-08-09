@@ -10,7 +10,7 @@ public class ChatActivosSocketManager {
 
     private static Socket socket;
     private ChatActivosContract.FriendInteractor listener;
-    private String url = "http://192.168.0.103:4005";
+    private String url = "http://192.168.0.104:4005";
 
 
     public ChatActivosSocketManager(ChatActivosContract.FriendInteractor listener, Activity activity){

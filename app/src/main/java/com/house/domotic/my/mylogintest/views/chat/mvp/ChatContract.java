@@ -2,9 +2,17 @@ package com.house.domotic.my.mylogintest.views.chat.mvp;
 
 import com.house.domotic.my.mylogintest.views.chat.model.ChatItemData;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class ChatContract {
+
+    public interface  FriendInteractor{
+
+        void chatRecieve(JSONArray jsonArray);
+
+    }
 
     public interface SendMessageResponse{
 

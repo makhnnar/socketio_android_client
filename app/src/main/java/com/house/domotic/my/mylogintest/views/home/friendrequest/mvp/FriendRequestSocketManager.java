@@ -13,7 +13,7 @@ public class FriendRequestSocketManager {
 
     private static Socket socket;
     private FriendRequestContract.FriendInteractor listener;
-    private String url = "http://192.168.0.103:4005";
+    private String url = "http://192.168.0.104:4005";
 
 
     public FriendRequestSocketManager(FriendRequestContract.FriendInteractor listener, Activity activity){
