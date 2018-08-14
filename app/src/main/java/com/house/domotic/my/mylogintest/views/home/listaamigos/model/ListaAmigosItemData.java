@@ -7,7 +7,7 @@ public class ListaAmigosItemData {
     private String foto;
     private String id;
 
-    public ListaAmigosItemData(String nombre, String estado, String foto) {
+    public ListaAmigosItemData(String nombre, String estado, String foto, String id) {
         this.nombre = nombre;
         this.estado = estado;
         this.foto = foto;

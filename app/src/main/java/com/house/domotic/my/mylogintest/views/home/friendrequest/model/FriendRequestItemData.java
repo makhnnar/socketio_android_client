@@ -3,15 +3,15 @@ package com.house.domotic.my.mylogintest.views.home.friendrequest.model;
 public class FriendRequestItemData {
 
     private String nombre;
-    private String mensaje;
+    private String estado;
     private String foto;
     private String hora;
     private String id;
 
 
-    public FriendRequestItemData(String nombre, String mensaje, String foto, String hora) {
+    public FriendRequestItemData(String nombre, String estado, String foto, String hora, String id) {
         this.nombre = nombre;
-        this.mensaje = mensaje;
+        this.estado = estado;
         this.foto = foto;
         this.hora = hora;
         this.id = id;
@@ -25,12 +25,12 @@ public class FriendRequestItemData {
         this.nombre = nombre;
     }
 
-    public String getMensaje() {
-        return mensaje;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getFoto() {

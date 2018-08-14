@@ -63,7 +63,7 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
         holder.tv_pfr_nombre_usuario.setText(mDataset.get(position).getNombre());
-        holder.tv_pfr_mensaje.setText(mDataset.get(position).getMensaje());
+        holder.tv_pfr_mensaje.setText(mDataset.get(position).getEstado());
         holder.tv_pfr_hora.setText(mDataset.get(position).getHora());
         holder.iv_pfr_foto_user.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -127,7 +127,6 @@ public class ListaAmigosAdapter extends RecyclerView.Adapter<ListaAmigosAdapter.
 
     public void update(ArrayList<ListaAmigosItemData> mDataset) {
         if (mDataset != null) {
-            this.mDataset.clear();
             this.mDataset = mDataset;
             notifyDataSetChanged();
         }

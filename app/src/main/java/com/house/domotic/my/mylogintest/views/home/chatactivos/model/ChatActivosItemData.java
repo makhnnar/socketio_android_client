@@ -7,7 +7,7 @@ public class ChatActivosItemData {
     private String foto;
     private String id;
 
-    public ChatActivosItemData(String nombre, String mensaje, String foto) {
+    public ChatActivosItemData(String nombre, String mensaje, String foto, String id) {
         this.nombre = nombre;
         this.mensaje = mensaje;
         this.foto = foto;

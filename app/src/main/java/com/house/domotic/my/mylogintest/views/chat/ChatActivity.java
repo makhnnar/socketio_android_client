@@ -1,5 +1,6 @@
 package com.house.domotic.my.mylogintest.views.chat;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -71,7 +72,7 @@ public class ChatActivity extends AppCompatActivity implements
         // Instanciamos un linear layout manager para setearlo en el RecyclerView
         mLayoutManager = new LinearLayoutManager(this.getBaseContext());
 
-        presenter = new ChatPresenter(this);
+        presenter = new ChatPresenter(this, this);
 
         rv_ac_msg_List.setLayoutManager(mLayoutManager);
 
@@ -110,6 +111,7 @@ public class ChatActivity extends AppCompatActivity implements
     @Override
     public void onReciveAllMessagesSuccess(ArrayList<ChatItemData> mDataset) {
         if (chatAdapter != null) {
+            for (int i = 0; i < mDataset.size(); i++)Log.i("cualquiera", "getChatActivosSuccess: ventanachat "+ " "+ mDataset.get(i).getId());
             chatAdapter.update(mDataset);
             rv_ac_msg_List.smoothScrollToPosition(chatAdapter.getItemCount() - 1);
             //pb_ac_progress_bar.setVisibility(View.GONE);

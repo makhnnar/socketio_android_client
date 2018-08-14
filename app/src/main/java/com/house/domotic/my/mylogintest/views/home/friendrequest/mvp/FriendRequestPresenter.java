@@ -1,5 +1,8 @@
 package com.house.domotic.my.mylogintest.views.home.friendrequest.mvp;
 
+import android.app.Activity;
+import android.util.Log;
+
 import com.house.domotic.my.mylogintest.views.home.friendrequest.model.FriendRequestItemData;
 
 import java.util.ArrayList;
@@ -18,9 +21,9 @@ public class FriendRequestPresenter implements
 
     private ArrayList<FriendRequestItemData> mDataset = new ArrayList<>();
 
-    public FriendRequestPresenter(FriendRequestContract.View view){
+    public FriendRequestPresenter(FriendRequestContract.View view, Activity activity){
         this.view = view;
-        interactor = new FriendRequestInteractor();
+        interactor = new FriendRequestInteractor(this, activity);
 
     }
 
@@ -47,7 +50,7 @@ public class FriendRequestPresenter implements
     @Override
     public void onReciveRequestListSuccess(ArrayList<FriendRequestItemData> mDataset) {
         if (mDataset != null) {
-            this.mDataset.clear();
+            for (int i = 0; i < mDataset.size(); i++) Log.i("cualquiera", "onReciveRequestListSuccess:  "+ " "+ mDataset.get(i).getId());
             this.mDataset = mDataset;
             view.onFriendRequestListSuccess(mDataset);
 
@@ -71,7 +74,8 @@ public class FriendRequestPresenter implements
 
     @Override
     public void getAllFrienshipNotifications() {
-        interactor.requestFriendship(this);
+        Log.i("cualquiera", "getAllFrienshipNotifications: haciendo peticion");
+        interactor.requestFriendship();
 
     }
 
