@@ -1,5 +1,6 @@
 package com.house.domotic.my.mylogintest.views.chat.mvp;
 
+import android.app.Activity;
 import android.util.Log;
 
 import com.house.domotic.my.mylogintest.views.chat.model.ChatItemData;
@@ -20,9 +21,9 @@ public class ChatPresenter implements
 
 
 
-    public ChatPresenter(ChatContract.View view) {
+    public ChatPresenter(ChatContract.View view, Activity activity) {
         this.view = view;
-        interactor = new ChatInteractor();
+        interactor = new ChatInteractor(this, activity);
     }
 
 
@@ -51,7 +52,7 @@ public class ChatPresenter implements
     @Override
     public void onReciveAllChatMessageSuccess(ArrayList<ChatItemData> listaMensaje) {
         if (listaMensaje != null) {
-            //this.mDataset.clear();
+            for (int i = 0; i < mDataset.size(); i++) Log.i("cualquiera", "ChatActivosSuccess: ventanachat "+ " "+ mDataset.get(i).getId());
             this.mDataset = listaMensaje;
             view.onReciveAllMessagesSuccess(mDataset);
 
@@ -70,7 +71,8 @@ public class ChatPresenter implements
                 "nombre",
                 msj,
                 "foto",
-                "hora"
+                "hora",
+                "id"
 
         );
         mDataset.add(chatItemData);
@@ -88,7 +90,8 @@ public class ChatPresenter implements
 
     @Override
     public void getAllMessage() {
-        interactor.requestMessage(this);
+        Log.i("cualquiera", "getChatActivos: ventanachat haciendo peticion");
+        interactor.requestMessage();
     }
 }
 /*

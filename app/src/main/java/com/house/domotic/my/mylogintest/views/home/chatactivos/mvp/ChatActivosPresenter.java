@@ -1,5 +1,8 @@
 package com.house.domotic.my.mylogintest.views.home.chatactivos.mvp;
 
+import android.app.Activity;
+import android.util.Log;
+
 import com.house.domotic.my.mylogintest.views.home.chatactivos.model.ChatActivosItemData;
 
 import java.util.ArrayList;
@@ -15,15 +18,16 @@ public class ChatActivosPresenter implements
 
     private ArrayList<ChatActivosItemData> mDataset = new ArrayList<>();
 
-    public ChatActivosPresenter(ChatActivosContract.View view){
+    public ChatActivosPresenter(ChatActivosContract.View view, Activity activity){
         this.view = view;
-        interactor = new ChatActivosInteractor();
+        interactor = new ChatActivosInteractor(this, activity);
     }
 
 
     @Override
     public void getChatActivos()   {
-        interactor.requestChats(this);
+        Log.i("cualquiera", "getChatActivos: ChatActivos haciendo peticion");
+        interactor.requestChats();
 
     }
 
@@ -37,7 +41,7 @@ public class ChatActivosPresenter implements
     @Override
     public void ChatActivosSuccess(ArrayList<ChatActivosItemData> mDataset) {
         if (mDataset != null){
-            this.mDataset.clear();
+            for (int i = 0; i < mDataset.size(); i++) Log.i("cualquiera", "ChatActivosSuccess: ChatActivos "+ " "+ mDataset.get(i).getId());
             this.mDataset  = mDataset;
             view.getChatActivosSuccess(mDataset);
 

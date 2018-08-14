@@ -116,7 +116,6 @@ public class ChatActivosAdapter extends RecyclerView.Adapter<ChatActivosAdapter.
     }
     public void update(ArrayList<ChatActivosItemData> mDataset){
         if (mDataset != null){
-            this.mDataset.clear();
             this.mDataset  = mDataset;
             notifyDataSetChanged();
 

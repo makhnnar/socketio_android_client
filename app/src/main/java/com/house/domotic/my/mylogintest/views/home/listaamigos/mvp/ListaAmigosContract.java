@@ -2,9 +2,16 @@ package com.house.domotic.my.mylogintest.views.home.listaamigos.mvp;
 
 import com.house.domotic.my.mylogintest.views.home.listaamigos.model.ListaAmigosItemData;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class ListaAmigosContract {
+
+    public interface  FriendInteractor{
+        void listaAmigosRecieve(JSONArray jsonArray);
+
+    }
 
     public interface ListaAmigosResponse{
 
